@@ -21,6 +21,8 @@ Enemy::Enemy(float x, float y) {
 	sprite.setTexture(texture);
 	/*sprite.setPosition(rand() % 750 + 1, rand() % 550 + 1);
 	direction = sf::Vector2f(0.03, 0);*/
+	sprite.setPosition(rand() % 750 + 1, rand() % 550 + 1);
+	direction = sf::Vector2f(1, 0);
 
 }
 

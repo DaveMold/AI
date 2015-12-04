@@ -22,6 +22,7 @@ public:
 	Enemy getEnemy(int i);
 	void addEnemy(Enemy* b);
 	void flocking();
+
 	void swarming(Pvector mousepos);
 };
 #endif
