@@ -130,11 +130,13 @@
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyManager.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Pvector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyManager.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Pvector.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\Resorces\Img\ball.png" />
