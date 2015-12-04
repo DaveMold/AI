@@ -8,7 +8,7 @@ Enemy::Enemy() {
 		texture.loadFromFile("Resorces/Img/BlackHole2.png");
 	sprite.setTexture(texture);
 	sprite.setPosition(rand() % 750 + 1, rand() % 550 + 1);
-	direction = sf::Vector2f(0.03, 0);
+	direction = sf::Vector2f(1, 0);
 
 }
 

@@ -10,10 +10,10 @@ class Enemy {
 	//vairbles
 	bool slow_before_player;
 	float rotation = 0.2;//Radiants
-	float speed = 0.03;
-	float max_speed = 0.03;
-	float decelerate = 0.01;
-	float radius_slow_approach = 75;
+	float speed = 3.0f;
+	float max_speed = 3.0f;
+	float decelerate = .1f;
+	float radius_slow_approach = 5;
 	float spritePosOffSet = 16;//sprite size / 2; sprite size == 32
 	sf::Texture texture;
 	sf::Vector2f direction;

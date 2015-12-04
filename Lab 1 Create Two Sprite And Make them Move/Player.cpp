@@ -10,13 +10,13 @@ Player::Player() {
 
 void Player::Move() {
 	//sprite One
-	/*sf::Vector2f temp = sprite.getPosition();*/
+	sf::Vector2f temp = sprite.getPosition();
     float rotation = sprite.getRotation();
     rotation *= (3.14f / 180);
 	direction = sf::Vector2f(cos(rotation), sin(rotation));
     
-	sf::Vector2f temp = direction * speed;
-	sprite.move(temp);
+	temp += direction * speed;
+	SetPos(temp);
 }
 
 sf::Vector2f Player::ScreenRap(sf::Vector2f pos, sf::RenderWindow &w) {
@@ -54,11 +54,11 @@ void Player::Update(sf::RenderWindow &w) {
 }
 
 void Player::SpeedUp() {
-	speed += 1.0f;
+    speed <= 2.8f ? speed += .2f : speed = 3.0f;
 }
 
 void Player::SlowDown() {
-	speed -= 1.0f;
+    speed >= .2f ? speed -= .2f : speed = 0;
 }
 
 void Player::SetPos(sf::Vector2f pos) {
