@@ -22,7 +22,7 @@
 #include <iostream>
 #include <math.h>
 #include "Player.h"
-#include "Enemy.h"
+#include "EnemyManager.h"
 
 
 int main()
@@ -31,14 +31,18 @@ int main()
 
 	// Create the main window
 	sf::RenderWindow window(sf::VideoMode(800, 600), "Moving Sprites");
+	sf::VideoMode desktop = sf::VideoMode::getDesktopMode();
+	const int window_height = desktop.height;
+	const int window_width = desktop.width;
 	sf::Clock clock = sf::Clock();
 	sf::Time elapsedTime;
 	Player player = Player();
-	//Enemy enemy = Enemy();
-	std::vector<Enemy*> Enemies;
+	EnemyManager eManager;
+	
 	//create some Enemies
 	for (int i = 0; i < numEnemies; i++) {
-		Enemies.push_back(new Enemy());
+		Enemy * e = new Enemy(window_width / 3, window_height / 3); //Starts all enemy in the center of the screen.
+		eManager.addEnemy(e);
 	}
 	
 
@@ -62,15 +66,11 @@ int main()
 			}//end switch
 		}//end while
 		player.Update(window);
-		for (int i = 0; i < Enemies.size(); i++) {
-			Enemies[i]->Update(window, player.GetPos());
-		}
+		eManager.flocking();
 		 //prepare frame
 		window.clear();
 		player.Draw(window);
-		for (int i = 0; i < Enemies.size(); i++) {
-			Enemies[i]->Draw(window);
-		}
+		eManager.Draw(window);
 		// Finally, display rendered frame on screen
 		window.display();
 		clock.restart();
