@@ -34,6 +34,8 @@ int main()
 	sf::VideoMode desktop = sf::VideoMode::getDesktopMode();
 	const int window_height = desktop.height;
 	const int window_width = desktop.width;
+    window.setFramerateLimit(60);
+
 	sf::Clock clock = sf::Clock();
 	sf::Time elapsedTime;
 	Player player = Player();
