@@ -1,20 +1,22 @@
 #include "Player.h"
 
 Player::Player() {
-	texture.loadFromFile("../../Resorces/Img/SpaceShip1-White/spaceship1_small-White.png");
+	texture.loadFromFile("Resorces/Img/SpaceShip1-White/spaceship1_small-White.png");
 	sprite.setTexture(texture);
 	sprite.setPosition(400, 100);
 	sprite.setOrigin(spritePosOffSet,spritePosOffSet);
-	direction = sf::Vector2f(0, 0.01);
-	sprite.setRotation(0.25f);
+    sprite.setRotation(90.0f);
 }
 
 void Player::Move() {
 	//sprite One
-	sf::Vector2f temp = sprite.getPosition();
+	/*sf::Vector2f temp = sprite.getPosition();*/
+    float rotation = sprite.getRotation();
+    rotation *= (3.14f / 180);
 	direction = sf::Vector2f(cos(rotation), sin(rotation));
-	temp += (direction * speed);
-	SetPos(temp);
+    
+	sf::Vector2f temp = direction * speed;
+	sprite.move(temp);
 }
 
 sf::Vector2f Player::ScreenRap(sf::Vector2f pos, sf::RenderWindow &w) {
@@ -32,10 +34,10 @@ sf::Vector2f Player::ScreenRap(sf::Vector2f pos, sf::RenderWindow &w) {
 void Player::Update(sf::RenderWindow &w) {
 	//Key input
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-		rotation -= 0.001;
+		sprite.rotate(-1.0f);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-		rotation += 0.001;
+        sprite.rotate(1.0f);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
 		SpeedUp();
@@ -47,16 +49,16 @@ void Player::Update(sf::RenderWindow &w) {
 		speed = 0;
 	}
 	Move();
-	sprite.setRotation(rotation);
+	/*sprite.Rotation(rotation);*/
 	sprite.setPosition(ScreenRap(sprite.getPosition(), w));
 }
 
 void Player::SpeedUp() {
-	speed += 0.0001;
+	speed += 1.0f;
 }
 
 void Player::SlowDown() {
-	speed -= 0.0001;
+	speed -= 1.0f;
 }
 
 void Player::SetPos(sf::Vector2f pos) {

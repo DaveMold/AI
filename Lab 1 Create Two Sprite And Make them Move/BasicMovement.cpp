@@ -31,6 +31,7 @@ int main()
 
 	// Create the main window
 	sf::RenderWindow window(sf::VideoMode(800, 600), "Moving Sprites");
+    window.setFramerateLimit(60);
 	sf::Clock clock = sf::Clock();
 	sf::Time elapsedTime;
 	Player player = Player();

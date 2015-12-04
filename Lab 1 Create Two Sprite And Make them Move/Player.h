@@ -7,8 +7,7 @@
 class Player {
 
 	//vairbles
-	float rotation = 0.2;//Radiants
-	float speed = 0.01;
+	float speed = 1.0f;
 	float spritePosOffSet = 16;//sprite size / 2; sprite size == 32
 	sf::Texture texture;
 	sf::Vector2f direction;

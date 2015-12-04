@@ -3,9 +3,9 @@
 Enemy::Enemy() {
 	slow_before_player = true;
 	if (slow_before_player == true)
-		texture.loadFromFile("../../Resorces/Img/BlackHole1.png");
+		texture.loadFromFile("Resorces/Img/BlackHole1.png");
 	else
-		texture.loadFromFile("../../Resorces/Img/BlackHole2.png");
+		texture.loadFromFile("Resorces/Img/BlackHole2.png");
 	sprite.setTexture(texture);
 	sprite.setPosition(rand() % 750 + 1, rand() % 550 + 1);
 	direction = sf::Vector2f(0.03, 0);
