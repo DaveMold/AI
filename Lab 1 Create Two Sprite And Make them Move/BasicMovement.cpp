@@ -1,4 +1,7 @@
 #pragma once
+
+#include "stdafx.h"
+
 #ifdef _DEBUG
 #pragma comment(lib,"sfml-graphics-d.lib")
 #pragma comment(lib,"sfml-audio-d.lib")
@@ -14,15 +17,6 @@
 #endif
 #pragma comment(lib,"opengl32.lib")
 #pragma comment(lib,"glu32.lib")
-
-//#include "stdafx.h"
-#include "SFML/Graphics.hpp"
-#include "SFML/OpenGL.hpp"
-#include <windows.h>
-#include <iostream>
-#include <math.h>
-#include "Player.h"
-#include "EnemyManager.h"
 
 
 int main()
