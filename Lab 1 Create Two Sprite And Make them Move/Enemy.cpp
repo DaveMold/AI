@@ -1,9 +1,6 @@
 //includes
+#include "stdafx.h"
 #include "Enemy.h"
-#include <iostream>
-#include <vector>
-#include <string>
-#include <math.h>
 
 Enemy::Enemy(float x, float y) {
 	slow_before_player = true;

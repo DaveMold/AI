@@ -1,11 +1,6 @@
 #ifndef ENEMY_H
 #define ENEMY_H
 
-//includes
-#include "Pvector.h"
-#include "SFML/Graphics.hpp"
-#include "SFML/OpenGL.hpp"
-#include <stdlib.h> 
 
 class Enemy {
 

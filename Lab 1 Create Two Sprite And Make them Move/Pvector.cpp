@@ -1,5 +1,5 @@
-#include <math.h>
-#include "Pvector.h"
+#include "stdafx.h"
+
 using namespace std;
 
 // =================================================== //
