@@ -48,3 +48,8 @@ void EnemyManager::swarming(Pvector mousepos)
 			enemies[i]->swarmToPoint(enemies, mousepos);
 	}
 }
+
+void EnemyManager::addFactory(Factory* fac)
+{
+
+}

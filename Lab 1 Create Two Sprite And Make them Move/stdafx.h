@@ -15,6 +15,7 @@
 
 #include "Pvector.h"
 
+#include "Factory.h"
 #include "Player.h"
 #include "Enemy.h"
 #include "EnemyManager.h"

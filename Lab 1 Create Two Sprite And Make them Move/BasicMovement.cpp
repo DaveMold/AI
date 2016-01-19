@@ -41,7 +41,11 @@ int main()
 		eManager.addEnemy(e);
 	}
 	
-
+    for (int i = 0; i < 1; i++)
+    {
+        Factory * f = new Factory(100, 100);
+        eManager.addFactory
+    }
 
 	// Start game loop
 	while (window.isOpen()) {
