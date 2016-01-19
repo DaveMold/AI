@@ -15,6 +15,8 @@
 #pragma comment(lib,"opengl32.lib")
 #pragma comment(lib,"glu32.lib")
 
+#include "windows.h"
+
 //#include "stdafx.h"
 #include "SFML/Graphics.hpp"
 #include "SFML/OpenGL.hpp"
@@ -23,7 +25,8 @@
 #include <math.h>
 #include "Player.h"
 #include "EnemyManager.h"
-
+#include "ProjectileManager.h"
+#include "InputManager.h"
 
 int main()
 {
@@ -40,6 +43,8 @@ int main()
 	sf::Time elapsedTime;
 	Player player = Player();
 	EnemyManager eManager;
+	ProjectileManager* projectileMgr = ProjectileManager::instance();
+	InputManager* inputMgr = InputManager::instance();
 	
 	//create some Enemies
 	for (int i = 0; i < numEnemies; i++) {
@@ -67,11 +72,26 @@ int main()
 					break;
 			}//end switch
 		}//end while
+		InputManager::instance()->UpdatePressedKeys(Event);
 		player.Update(window);
+		projectileMgr->Update(window);
+
+		//Get the mouse posistion and send it to the swarm method.
+		POINT mousePos;
+		if (GetCursorPos(&mousePos))
+		{
+			if (ScreenToClient(window.getSystemHandle(),  &mousePos))
+			{
+				//std::cout << "mouse pos : (" << mousePos.x << ", " << mousePos.y << ")" << std::endl;
+				eManager.swarming(Pvector(mousePos.x, mousePos.y));
+			}
+		}
 		eManager.flocking();
+
 		 //prepare frame
 		window.clear();
 		player.Draw(window);
+		projectileMgr->Draw(window);
 		eManager.Draw(window);
 		// Finally, display rendered frame on screen
 		window.display();

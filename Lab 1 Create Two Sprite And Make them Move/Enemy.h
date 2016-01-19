@@ -20,7 +20,7 @@ class Enemy {
 	float rotation = 0.2;//Radiants
 	float speed = 3.0f;
 	float max_speed = 3.0f;
-	float decelerate = .1f;
+	float decelerate = 0.1f;
 	float radius_slow_approach = 5;
 	float spritePosOffSet = 16;//sprite size / 2; sprite size == 32
 	sf::Texture texture;

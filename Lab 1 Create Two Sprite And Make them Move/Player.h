@@ -3,6 +3,7 @@
 
 #include "SFML/Graphics.hpp"
 #include "SFML/OpenGL.hpp"
+#include "ProjectileManager.h"
 
 class Player {
 
