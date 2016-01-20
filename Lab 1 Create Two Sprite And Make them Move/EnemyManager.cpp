@@ -13,6 +13,10 @@ void EnemyManager::Draw(sf::RenderWindow &w) {
 	for (int i = 0; i < enemies.size(); i++) {
 		enemies[i]->Draw(w);
 	}
+    for (int i = 0; i < factories.size(); i++)
+    {
+        factories[i]->Draw(w);
+    }
 }
 
 int EnemyManager::getSize()
@@ -20,12 +24,12 @@ int EnemyManager::getSize()
 	return enemies.size();
 }
 
-Enemy EnemyManager::getEnemy(int i)
+Swarmer EnemyManager::getEnemy(int i)
 {
 	return *enemies[i];
 }
 
-void EnemyManager::addEnemy(Enemy* b)
+void EnemyManager::addEnemy(Swarmer* b)
 {
 	enemies.push_back(b);
 }
@@ -46,7 +50,15 @@ void EnemyManager::swarming(Pvector mousepos)
 	}
 }
 
+void EnemyManager::UpdateFactories()
+{
+    for (int i = 0; i < factories.size(); i++)
+    {
+        factories[i]->Update();
+    }
+}
+
 void EnemyManager::addFactory(Factory* fac)
 {
-
+    factories.push_back(fac);
 }

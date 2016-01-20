@@ -5,11 +5,15 @@
 
 Factory::Factory()
 {
+    texture.loadFromFile("Resorces/Img/Factory.png");
+    sprite.setTexture(texture);
+    velocity = new Pvector(rand() % 3 - 2, rand() % 3 - 2); // Allows for range of -2 -> 2
+    location = new Pvector(rand() % 750 + 1, rand() % 550 + 1);//x, y);
 }
 
-Factory::Factory(int x, int y)
+Factory::Factory(int x, int y) : Factory()
 {
-    sprite.setPosition(sf::Vector2f(x, y));
+    //sprite.setPosition(sf::Vector2f(x, y));
 }
 
 sf::Vector2f Factory::ScreenRap(sf::Vector2f pos, sf::RenderWindow &w)
@@ -23,6 +27,11 @@ sf::Vector2f Factory::ScreenRap(sf::Vector2f pos, sf::RenderWindow &w)
     else if (pos.y > w.getSize().y + 1)
         pos.y = 1 - (spritePosOffSet * 2);
     return pos;
+}
+
+void Factory::Update()
+{
+
 }
 
 void Factory::Draw(sf::RenderWindow &w)

@@ -13,7 +13,7 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Img">
+    <Filter Include="Resource Files\Img">
       <UniqueIdentifier>{249b832d-6bde-4c57-bbbe-043dc4a24487}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -22,9 +22,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="EnemyManager.cpp">
@@ -40,7 +37,7 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="InputManager.cpp">
-	  <Filter>Source Files</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Factory.cpp">
       <Filter>Source Files</Filter>
@@ -48,12 +45,12 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Swarmer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="EnemyManager.h">
@@ -69,7 +66,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="InputManager.h">
-	  <Filter>Header Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Factory.h">
       <Filter>Header Files</Filter>
@@ -77,16 +74,25 @@
     <ClInclude Include="stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Swarmer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\Resorces\Img\ball.png">
-      <Filter>Img</Filter>
+      <Filter>Resource Files\Img</Filter>
     </Image>
     <Image Include="..\..\Resorces\Img\Blackhole1.png">
-      <Filter>Img</Filter>
+      <Filter>Resource Files\Img</Filter>
     </Image>
     <Image Include="..\..\Resorces\Img\Blackhole2.png">
-      <Filter>Img</Filter>
+      <Filter>Resource Files\Img</Filter>
+    </Image>
+    <Image Include="Resorces\Img\Player\Player.png">
+      <Filter>Resource Files\Img</Filter>
+    </Image>
+    <Image Include="Resorces\Img\Predator\Predator .png">
+      <Filter>Resource Files\Img</Filter>
     </Image>
   </ItemGroup>
 </Project>

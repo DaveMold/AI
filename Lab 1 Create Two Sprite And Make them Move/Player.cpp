@@ -3,7 +3,7 @@
 #include "InputManager.h"
 
 Player::Player() {
-	texture.loadFromFile("Resorces/Img/SpaceShip1-White/spaceship1_small-White.png");
+	texture.loadFromFile("Resorces/Img/Player/Player.png");
 	sprite.setTexture(texture);
 	sprite.setPosition(400, 100);
 	sprite.setOrigin(spritePosOffSet,spritePosOffSet);

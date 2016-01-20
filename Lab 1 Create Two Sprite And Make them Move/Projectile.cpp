@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "Projectile.h"
 
 Projectile::Projectile(sf::Vector2f dir, sf::Vector2f pos) : direction(dir) {

@@ -52,7 +52,7 @@ int main()
 	
 	//create some Enemies
 	for (int i = 0; i < numEnemies; i++) {
-		Enemy * e = new Enemy(window_width / 3, window_height / 3); //Starts all enemy in the center of the screen.
+		Swarmer * e = new Swarmer(window_width / 3, window_height / 3); //Starts all enemy in the center of the screen.
 		eManager.addEnemy(e);
 	}
 	

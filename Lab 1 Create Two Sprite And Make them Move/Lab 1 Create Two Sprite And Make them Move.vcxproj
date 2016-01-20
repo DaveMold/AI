@@ -134,7 +134,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Enemy.cpp">
+    <ClCompile Include="Swarmer.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
     </ClCompile>
@@ -172,7 +172,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="Swarmer.h" />
     <ClInclude Include="EnemyManager.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Factory.h" />
@@ -186,6 +186,8 @@
     <Image Include="..\..\Resorces\Img\ball.png" />
     <Image Include="..\..\Resorces\Img\Blackhole1.png" />
     <Image Include="..\..\Resorces\Img\Blackhole2.png" />
+    <Image Include="Resorces\Img\Player\Player.png" />
+    <Image Include="Resorces\Img\Predator\Predator .png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

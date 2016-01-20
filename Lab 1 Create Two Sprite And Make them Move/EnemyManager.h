@@ -7,7 +7,7 @@ using namespace std;
 class EnemyManager {
 private:
 
-    vector<Enemy*> enemies;
+    vector<Swarmer*> enemies;
     vector<Factory *> factories;
 
 public:
@@ -16,11 +16,12 @@ public:
 	~EnemyManager();
 	void Draw(sf::RenderWindow &w);
 	int getSize();
-	Enemy getEnemy(int i);
-	void addEnemy(Enemy* b);
+	Swarmer getEnemy(int i);
+	void addEnemy(Swarmer* b);
     void addFactory(Factory* fac);
 	void flocking();
 
 	void swarming(Pvector mousepos);
+    void UpdateFactories();
 };
 #endif

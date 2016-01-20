@@ -17,8 +17,10 @@
 
 #include "Factory.h"
 #include "Player.h"
-#include "Enemy.h"
+#include "Swarmer.h"
 #include "EnemyManager.h"
+#include "Projectile.h"
+#include "ProjectileManager.h"
 
 
 
