@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Player.h"
+#include "InputManager.h"
 
 Player::Player() {
 	texture.loadFromFile("Resorces/Img/SpaceShip1-White/spaceship1_small-White.png");
@@ -34,20 +35,23 @@ sf::Vector2f Player::ScreenRap(sf::Vector2f pos, sf::RenderWindow &w) {
 
 void Player::Update(sf::RenderWindow &w) {
 	//Key input
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+	if (InputManager::instance()->Held("Left")) {
 		sprite.rotate(-1.0f);
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+	if (InputManager::instance()->Held("Right")) {
         sprite.rotate(1.0f);
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+	if (InputManager::instance()->Held("Up")) {
 		SpeedUp();
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+	if (InputManager::instance()->Held("Down")) {
 		SlowDown();
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+	if (InputManager::instance()->Pressed("End")) {
 		speed = 0;
+	}
+	if (InputManager::instance()->Pressed("PageDown")) {
+		ProjectileManager::instance()->AddProjectile(direction, sprite.getPosition());
 	}
 	Move();
 	/*sprite.Rotation(rotation);*/

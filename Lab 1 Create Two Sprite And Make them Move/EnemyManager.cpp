@@ -42,9 +42,6 @@ void EnemyManager::swarming(Pvector mousepos)
 {
 	for (int i = 0; i < enemies.size(); i++)
 	{
-		/*if (enemies[i]predator)
-			enemies[i].swarm(flock);
-		else*/
 			enemies[i]->swarmToPoint(enemies, mousepos);
 	}
 }

@@ -1,6 +1,13 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
+<<<<<<< HEAD
+#include "SFML/Graphics.hpp"
+#include "SFML/OpenGL.hpp"
+#include "ProjectileManager.h"
+
+=======
+>>>>>>> 698b49a611378ba2daea3488a09cb128c5ef1448
 class Player {
 
 	//vairbles

@@ -6,7 +6,7 @@ Enemy::Enemy(float x, float y) {
 	slow_before_player = true;
 	acceleration = new Pvector(0, 0);
 	velocity = new Pvector(rand() % 3 - 2, rand() % 3 - 2); // Allows for range of -2 -> 2
-	location = new Pvector(x, y);
+	location = new Pvector(rand() % 750 + 1, rand() % 550 + 1);//x, y);
 	maxSpeed = 0.5f;
 	maxForce = 0.5f;
 
