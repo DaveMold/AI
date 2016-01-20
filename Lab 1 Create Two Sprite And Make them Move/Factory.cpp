@@ -7,6 +7,11 @@ Factory::Factory()
 {
 }
 
+Factory::Factory(int x, int y)
+{
+    sprite.setPosition(sf::Vector2f(x, y));
+}
+
 sf::Vector2f Factory::ScreenRap(sf::Vector2f pos, sf::RenderWindow &w)
 {
     if (pos.x < 0 - (spritePosOffSet * 2))

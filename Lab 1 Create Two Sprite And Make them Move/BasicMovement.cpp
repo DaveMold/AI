@@ -44,7 +44,7 @@ int main()
     for (int i = 0; i < 1; i++)
     {
         Factory * f = new Factory(100, 100);
-        eManager.addFactory
+        eManager.addFactory(f);
     }
 
 	// Start game loop

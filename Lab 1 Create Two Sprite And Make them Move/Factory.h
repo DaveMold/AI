@@ -7,6 +7,8 @@ class Factory
 
 public:
     Factory();
+    Factory(int x , int y);
+
     sf::Vector2f ScreenRap(sf::Vector2f pos, sf::RenderWindow & w);
     void Draw(sf::RenderWindow & w);
     ~Factory();
