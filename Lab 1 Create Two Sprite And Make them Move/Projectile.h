@@ -23,5 +23,7 @@ public:
 	void Update();
 	void Draw(sf::RenderWindow &w);
 	bool ScreenBounds(sf::RenderWindow &w);
+	sf::Vector2f GetPos();
+	sf::FloatRect GetBounds();
 };
 #endif

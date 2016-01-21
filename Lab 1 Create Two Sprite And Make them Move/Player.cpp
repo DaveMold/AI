@@ -6,6 +6,8 @@ Player::Player() {
 	texture.loadFromFile("Resorces/Img/Player/Player.png");
 	sprite.setTexture(texture);
 	sprite.setPosition(400, 100);
+	followPlayer.setCenter(400, 300);
+	followPlayer.setSize(800, 600);
 	sprite.setOrigin(spritePosOffSet,spritePosOffSet);
     sprite.setRotation(90.0f);
 }
@@ -55,6 +57,7 @@ void Player::Update(sf::RenderWindow &w) {
 	}
 	Move();
 	/*sprite.Rotation(rotation);*/
+	moveView(sprite.getPosition());
 	sprite.setPosition(ScreenRap(sprite.getPosition(), w));
 }
 
@@ -72,6 +75,14 @@ void Player::SetPos(sf::Vector2f pos) {
 
 sf::Vector2f Player::GetPos() {
 	return sprite.getPosition();
+}
+
+sf::View Player::getView() {
+	return followPlayer;
+}
+
+void Player::moveView(sf::Vector2f pos) {
+	followPlayer.move(pos);
 }
 
 void Player::Draw(sf::RenderWindow &w) {

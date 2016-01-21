@@ -11,7 +11,7 @@ class Player {
 	sf::Texture texture;
 	sf::Vector2f direction;
 	sf::Sprite sprite;
-
+	sf::View followPlayer;
 public:
 	Player();
 	void Move();
@@ -19,6 +19,8 @@ public:
 	void Update(sf::RenderWindow &w);
 	void SetPos(sf::Vector2f pos);
 	sf::Vector2f GetPos();
+	sf::View getView();
+	void moveView(sf::Vector2f pos);
 	void SpeedUp();
 	void SlowDown();
 	void Draw(sf::RenderWindow &w);

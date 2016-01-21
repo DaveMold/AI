@@ -9,6 +9,10 @@ private:
 
     vector<Swarmer*> enemies;
     vector<Factory *> factories;
+	int swarmingRange; //when the swarming enemies are with in this range they will stop flocking to swarm on the player.
+	enum swarmAIType { SWARM, FLOCKING };
+	swarmAIType swarmAI;
+
 
 public:
 	
@@ -20,8 +24,9 @@ public:
 	void addEnemy(Swarmer* b);
     void addFactory(Factory* fac);
 	void flocking();
-
+	void swarmECollision();
 	void swarming(Pvector mousepos);
     void UpdateFactories();
+	void swarmEAI(Pvector target);
 };
 #endif

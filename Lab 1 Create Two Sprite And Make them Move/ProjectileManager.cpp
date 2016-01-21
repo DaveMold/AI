@@ -48,3 +48,22 @@ void ProjectileManager::Draw(sf::RenderWindow &w) {
 void ProjectileManager::AddProjectile(sf::Vector2f dir, sf::Vector2f pos) {
 	projectiles.push_back(new Projectile(dir, pos));
 }
+
+bool ProjectileManager::Collision(Swarmer* e) {
+	sf::Vector2f pPos, ePos;
+	sf::FloatRect pBounds, eBounds;
+	ePos = e->GetPos();
+	eBounds = e->GetBounds();
+	for (auto itr = projectiles.begin(); itr != projectiles.end(); itr++) {
+		pPos = (*itr)->GetPos();
+		pBounds = (*itr)->GetBounds();
+		//callculate distance between two points
+		float dis = sqrt(pow(ePos.x - pPos.x, 2.0f) + pow(ePos.y - pPos.y, 2.0f));
+		if ((eBounds.width / 2.0f) + (pBounds.width / 2.0f) > dis)
+		{
+			projectiles.erase(itr);
+			return true;	
+		}
+	}
+	return false;
+}

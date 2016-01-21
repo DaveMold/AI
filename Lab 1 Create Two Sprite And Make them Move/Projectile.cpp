@@ -36,3 +36,11 @@ bool Projectile::ScreenBounds(sf::RenderWindow &w) {
 	else
 		return false;
 }
+
+sf::Vector2f Projectile::GetPos() {
+	return sprite.getPosition();
+}
+
+sf::FloatRect Projectile::GetBounds() {
+	return sprite.getGlobalBounds();
+}

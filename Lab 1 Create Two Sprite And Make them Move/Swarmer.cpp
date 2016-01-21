@@ -115,6 +115,14 @@ const int window_width = desktopTemp.width;
 
 using namespace std;
 
+sf::Vector2f Swarmer::GetPos() {
+	return sprite.getPosition();
+}
+
+sf::FloatRect Swarmer::GetBounds() {
+	return sprite.getGlobalBounds();
+}
+
 
 void Swarmer::applyForce(Pvector force)
 {
@@ -290,6 +298,9 @@ void Swarmer::flock(vector<Swarmer*> v)
 	applyForce(sep);
 	applyForce(ali);
 	applyForce(coh);
+
+	update();
+	borders();
 }
 
 void Swarmer::borders()

@@ -31,6 +31,8 @@ public:
 	void SpeedUp();
 	void SlowDown();
 	void Draw(sf::RenderWindow &w);
+	sf::Vector2f GetPos();
+	sf::FloatRect GetBounds();
 
 
 	void applyForce(Pvector force);

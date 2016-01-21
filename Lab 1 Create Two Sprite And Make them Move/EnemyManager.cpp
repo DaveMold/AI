@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "EnemyManager.h"
 
-EnemyManager::EnemyManager() {
+EnemyManager::EnemyManager() : swarmingRange(100), swarmAI(FLOCKING) {
 
 }
 
@@ -42,6 +42,16 @@ void EnemyManager::flocking()
 	}
 }
 
+void EnemyManager::swarmECollision() {
+	for (auto itr = enemies.begin(); itr != enemies.end(); itr++) {
+		if (ProjectileManager::instance()->Collision(*itr))
+		{
+			enemies.erase(itr);
+			break;
+		}
+	}
+}
+
 void EnemyManager::swarming(Pvector mousepos)
 {
 	for (int i = 0; i < enemies.size(); i++)
@@ -61,4 +71,34 @@ void EnemyManager::UpdateFactories()
 void EnemyManager::addFactory(Factory* fac)
 {
     factories.push_back(fac);
+}
+
+void EnemyManager::swarmEAI(Pvector target) {
+	sf::Vector2f ePos;
+	for (auto itr = enemies.begin(); itr != enemies.end(); itr++) {
+		ePos = (*itr)->GetPos();
+		//callculate distance between two points
+		float dis = sqrt(pow(ePos.x - target.x, 2.0f) + pow(ePos.y - target.y, 2.0f));
+		if (dis < swarmingRange)
+			swarmAI = SWARM;
+		else
+			swarmAI = FLOCKING;
+	}
+
+	switch (swarmAI)
+	{
+	case SWARM:
+		for (auto itr = enemies.begin(); itr != enemies.end(); itr++) {
+			(*itr)->swarmToPoint(enemies, target);
+		}
+		break;
+	case FLOCKING:
+		for (auto itr = enemies.begin(); itr != enemies.end(); itr++) {
+			(*itr)->flock(enemies);
+		}
+		break;
+	default:
+		std::cout << "default EM::swarmAI" << std::endl;
+		break;
+	}
 }
