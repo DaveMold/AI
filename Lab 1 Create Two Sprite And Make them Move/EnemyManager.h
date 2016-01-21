@@ -18,7 +18,7 @@ public:
 	
 	EnemyManager();
 	~EnemyManager();
-	void Draw(sf::RenderWindow &w);
+	void Draw(sf::RenderWindow &w, sf::Vector2f &wb);
 	int getSize();
 	Swarmer getEnemy(int i);
 	void addEnemy(Swarmer* b);

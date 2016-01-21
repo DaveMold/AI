@@ -38,17 +38,33 @@ int main()
 
 	// Create the main window
 	sf::RenderWindow window(sf::VideoMode(800, 600), "Moving Sprites");
+	//used for getting the mouse posistion.
 	sf::VideoMode desktop = sf::VideoMode::getDesktopMode();
 	const int window_height = desktop.height;
 	const int window_width = desktop.width;
-    window.setFramerateLimit(60);
 
+    window.setFramerateLimit(60);
 	sf::Clock clock = sf::Clock();
 	sf::Time elapsedTime;
+
+	//BackGround
+	sf::Texture backGroundTexture;
+	sf::Sprite backGroundSprite;
+	backGroundTexture.loadFromFile("Resorces/Img/background.png");
+	backGroundSprite.setTexture(backGroundTexture);
+	backGroundSprite.setPosition(0, 0);
+	
+
+	//Entities
 	Player player = Player();
 	EnemyManager eManager;
 	ProjectileManager* projectileMgr = ProjectileManager::instance();
 	InputManager* inputMgr = InputManager::instance();
+
+	//set up world.
+	sf::Vector2f worldBounds;
+	worldBounds.x = window.getSize().x * 9.0f;
+	worldBounds.y = window.getSize().y * 9.0f;
 	
 	//create some Enemies
 	for (int i = 0; i < numEnemies; i++) {
@@ -81,7 +97,7 @@ int main()
 			}//end switch
 		}//end while
 		InputManager::instance()->UpdatePressedKeys(Event);
-		player.Update(window);
+		player.Update(worldBounds);
 		projectileMgr->Update(window);
 
 		//Get the mouse posistion and send it to the swarm method.
@@ -100,9 +116,17 @@ int main()
 		 //prepare frame
 		window.clear();
 		window.setView(player.getView());
+		window.draw(backGroundSprite);
 		player.Draw(window);
 		projectileMgr->Draw(window);
-		eManager.Draw(window);
+		eManager.Draw(window, worldBounds);
+
+		window.setView(player.getMiniMapView());
+		window.draw(backGroundSprite);
+		player.Draw(window);
+		projectileMgr->Draw(window);
+		eManager.Draw(window, worldBounds);
+		
 		// Finally, display rendered frame on screen
 		window.display();
 		clock.restart();

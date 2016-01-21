@@ -16,15 +16,15 @@ Factory::Factory(int x, int y) : Factory()
     //sprite.setPosition(sf::Vector2f(x, y));
 }
 
-sf::Vector2f Factory::ScreenRap(sf::Vector2f pos, sf::RenderWindow &w)
+sf::Vector2f Factory::ScreenRap(sf::Vector2f pos, sf::Vector2f &w)
 {
     if (pos.x < 0 - (spritePosOffSet * 2))
-        pos.x = w.getSize().x;
-    else if (pos.x > w.getSize().x)
+        pos.x = w.x;
+    else if (pos.x > w.x)
         pos.x = 1 - (spritePosOffSet * 2);
     if (pos.y < 0 - (spritePosOffSet * 2))
-        pos.y = w.getSize().y;
-    else if (pos.y > w.getSize().y + 1)
+        pos.y = w.y;
+    else if (pos.y > w.y + 1)
         pos.y = 1 - (spritePosOffSet * 2);
     return pos;
 }
@@ -34,9 +34,9 @@ void Factory::Update()
 
 }
 
-void Factory::Draw(sf::RenderWindow &w)
+void Factory::Draw(sf::RenderWindow &w, sf::Vector2f &wb)
 {
-    sprite.setPosition(ScreenRap(sf::Vector2f(location->x, location->y), w));
+    sprite.setPosition(ScreenRap(sf::Vector2f(location->x, location->y), wb));
     w.draw(sprite);
 }
 

@@ -8,6 +8,11 @@ Player::Player() {
 	sprite.setPosition(400, 100);
 	followPlayer.setCenter(400, 300);
 	followPlayer.setSize(800, 600);
+	followPlayer.setViewport(sf::FloatRect(0, 0, 1, 1));
+	miniMapView.setCenter(3600, 2700);
+	miniMapView.setSize(100, 50);
+	miniMapView.setViewport(sf::FloatRect(0.75f, 0, 0.25f, 0.25f));
+	miniMapView.zoom(16);
 	sprite.setOrigin(spritePosOffSet,spritePosOffSet);
     sprite.setRotation(90.0f);
 }
@@ -23,19 +28,19 @@ void Player::Move() {
 	SetPos(temp);
 }
 
-sf::Vector2f Player::ScreenRap(sf::Vector2f pos, sf::RenderWindow &w) {
+sf::Vector2f Player::ScreenRap(sf::Vector2f pos, sf::Vector2f &w) {
 	if (pos.x < 0 - (spritePosOffSet * 2))
-		pos.x = w.getSize().x;
-	else if (pos.x > w.getSize().x)
+		pos.x = w.x;
+	else if (pos.x > w.x)
 		pos.x = 1 - (spritePosOffSet * 2);
 	if (pos.y < 0 - (spritePosOffSet * 2))
-		pos.y = w.getSize().y;
-	else if (pos.y > w.getSize().y + 1)
+		pos.y = w.y;
+	else if (pos.y > w.y + 1)
 		pos.y = 1 - (spritePosOffSet * 2);
 	return pos;
 }
 
-void Player::Update(sf::RenderWindow &w) {
+void Player::Update(sf::Vector2f &w) {
 	//Key input
 	if (InputManager::instance()->Held("Left")) {
 		sprite.rotate(-1.0f);
@@ -58,6 +63,7 @@ void Player::Update(sf::RenderWindow &w) {
 	Move();
 	/*sprite.Rotation(rotation);*/
 	followPlayer.setCenter(sprite.getPosition());
+	miniMapView.setCenter(sprite.getPosition());
 	sprite.setPosition(ScreenRap(sprite.getPosition(), w));
 }
 
@@ -79,6 +85,10 @@ sf::Vector2f Player::GetPos() {
 
 sf::View Player::getView() {
 	return followPlayer;
+}
+
+sf::View Player::getMiniMapView() {
+	return miniMapView;
 }
 
 void Player::Draw(sf::RenderWindow &w) {

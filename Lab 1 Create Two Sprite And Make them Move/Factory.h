@@ -9,9 +9,9 @@ public:
     Factory();
     Factory(int x , int y);
 
-    sf::Vector2f ScreenRap(sf::Vector2f pos, sf::RenderWindow & w);
+    sf::Vector2f ScreenRap(sf::Vector2f pos, sf::Vector2f & w);
     void Update();
-    void Draw(sf::RenderWindow & w);
+    void Draw(sf::RenderWindow & w, sf::Vector2f &wb);
     ~Factory();
 
 private:

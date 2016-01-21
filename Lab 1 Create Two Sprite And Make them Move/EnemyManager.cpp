@@ -9,13 +9,13 @@ EnemyManager::~EnemyManager() {
 
 }
 
-void EnemyManager::Draw(sf::RenderWindow &w) {
+void EnemyManager::Draw(sf::RenderWindow &w, sf::Vector2f &wb) {
 	for (int i = 0; i < enemies.size(); i++) {
-		enemies[i]->Draw(w);
+		enemies[i]->Draw(w,wb);
 	}
     for (int i = 0; i < factories.size(); i++)
     {
-        factories[i]->Draw(w);
+        factories[i]->Draw(w,wb);
     }
 }
 

@@ -57,19 +57,19 @@ void Swarmer::Move(sf::Vector2f target) {
 	SetPos(temp);
 }
 
-sf::Vector2f Swarmer::ScreenRap(sf::Vector2f pos, sf::RenderWindow &w) {
+sf::Vector2f Swarmer::ScreenRap(sf::Vector2f pos, sf::Vector2f &w) {
 	if (pos.x < 0 - (spritePosOffSet * 2))
-		pos.x = w.getSize().x;
-	else if (pos.x > w.getSize().x)
+		pos.x = w.x;
+	else if (pos.x > w.x)
 		pos.x = 1 - (spritePosOffSet * 2);
 	if (pos.y < 0 - (spritePosOffSet * 2))
-		pos.y = w.getSize().y;
-	else if (pos.y > w.getSize().y + 1)
+		pos.y = w.y;
+	else if (pos.y > w.y + 1)
 		pos.y = 1 - (spritePosOffSet * 2);
 	return pos;
 }
 
-void Swarmer::Update(sf::RenderWindow &w, sf::Vector2f target) {
+void Swarmer::Update(sf::Vector2f &w, sf::Vector2f target) {
 	//Key input
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
 		if (slow_before_player == true)
@@ -99,8 +99,8 @@ void Swarmer::SetPos(sf::Vector2f pos) {
 	sprite.setPosition(pos);
 }
 
-void Swarmer::Draw(sf::RenderWindow &w) {
-	sprite.setPosition(ScreenRap(sf::Vector2f(location->x,location->y),w));
+void Swarmer::Draw(sf::RenderWindow &w, sf::Vector2f &wb) {
+	sprite.setPosition(ScreenRap(sf::Vector2f(location->x,location->y),wb));
 	w.draw(sprite);
 }
 
