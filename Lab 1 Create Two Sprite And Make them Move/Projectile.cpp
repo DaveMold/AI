@@ -1,8 +1,9 @@
 #include "stdafx.h"
 #include "Projectile.h"
 
-Projectile::Projectile(sf::Vector2f dir, sf::Vector2f pos) : direction(dir) {
+Projectile::Projectile(sf::Vector2f dir, sf::Vector2f pos) : direction(dir), range(400) {
 	sprite.setPosition(pos);
+	startPos = pos;
 	texture.loadFromFile("Resorces/Img/Projectile.png");
 	sprite.setTexture(texture);
 	spritePosOffSet = 8;
@@ -17,11 +18,15 @@ void Projectile::SetPos(sf::Vector2f pos) {
 	sprite.setPosition(pos);
 }
 
-void Projectile::Update() {
+bool Projectile::Update() {
 	sf::Vector2f temp = sprite.getPosition();
-
+	if (sqrt(pow(startPos.x - temp.x, 2.0f) + pow(startPos.y - temp.y, 2.0f)) > range)
+	{
+		return true;//return true if projectile is to be removed from the list as it has reached its range.
+	}
 	temp += (direction * speed);
 	SetPos(temp);
+	return false;
 }
 
 void Projectile::Draw(sf::RenderWindow &w) {

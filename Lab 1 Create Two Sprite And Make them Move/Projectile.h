@@ -16,11 +16,13 @@ private:
 	float acceleration;// = 0.01;
 	sf::Vector2f direction;
 	float spritePosOffSet;
+	sf::Vector2f startPos;
+	int range;
 public:
 	Projectile(sf::Vector2f dir, sf::Vector2f pos);
 	~Projectile();
 	void SetPos(sf::Vector2f pos);
-	void Update();
+	bool Update();
 	void Draw(sf::RenderWindow &w);
 	bool ScreenBounds(sf::RenderWindow &w);
 	sf::Vector2f GetPos();
