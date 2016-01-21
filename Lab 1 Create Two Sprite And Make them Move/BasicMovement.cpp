@@ -99,7 +99,7 @@ int main()
 
 		 //prepare frame
 		window.clear();
-		//window.setView(player.getView());
+		window.setView(player.getView());
 		player.Draw(window);
 		projectileMgr->Draw(window);
 		eManager.Draw(window);

@@ -57,7 +57,7 @@ void Player::Update(sf::RenderWindow &w) {
 	}
 	Move();
 	/*sprite.Rotation(rotation);*/
-	moveView(sprite.getPosition());
+	followPlayer.setCenter(sprite.getPosition());
 	sprite.setPosition(ScreenRap(sprite.getPosition(), w));
 }
 
@@ -79,10 +79,6 @@ sf::Vector2f Player::GetPos() {
 
 sf::View Player::getView() {
 	return followPlayer;
-}
-
-void Player::moveView(sf::Vector2f pos) {
-	followPlayer.move(pos);
 }
 
 void Player::Draw(sf::RenderWindow &w) {

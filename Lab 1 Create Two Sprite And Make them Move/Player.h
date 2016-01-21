@@ -20,7 +20,6 @@ public:
 	void SetPos(sf::Vector2f pos);
 	sf::Vector2f GetPos();
 	sf::View getView();
-	void moveView(sf::Vector2f pos);
 	void SpeedUp();
 	void SlowDown();
 	void Draw(sf::RenderWindow &w);
