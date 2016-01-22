@@ -74,7 +74,7 @@ int main()
     {
         for (int z = 0; z < numSwarmersPerPack; z++)
         {
-            Swarmer * e = new Swarmer((100 * i) * rand(), (100 * i) * rand()); //Starts all enemy in the center of the screen.
+            Swarmer * e = new Swarmer((1000 * i), (700 * i)); //Starts all enemy in the center of the screen.
             eManager.addEnemy(e);
         }
     }
@@ -127,6 +127,8 @@ int main()
         eManager.CheckCollisions();
         eManager.UpdateFactories(&player);
         eManager.UpdatePredators(player.GetPos());
+        eManager.CollisionSwarm(&player);
+        eManager.CollisionPred(&player);
 
         //prepare frame
         window.clear();

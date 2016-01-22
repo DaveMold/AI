@@ -141,7 +141,9 @@ void Predator::CalculateSeperation(std::vector<Predator*> preds)
 
 Pvector Predator::Seek(Pvector playerLocation)
 {
-    Pvector desired = playerLocation - *location;
+    auto temp = playerLocation;
+    temp.subScalar(30);
+    Pvector desired = temp - *location;
     // desired.subVector(playerLocation);  // A vector pointing from the location to the target
     // Normalize desired and scale to maximum speed
     desired.normalize();

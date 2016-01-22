@@ -112,8 +112,8 @@ void EnemyManager::UpdateFactories(Player* p)
 
         factories[i]->applyForce(*force);
         factories[i]->Avoid(p->GetPos());
-        factories[i]->Update(new Pvector(p->GetPos().x,p->GetPos().y));
-		factories[i]->CollisionProjectilePlayer(p);
+        factories[i]->Update(new Pvector(p->GetPos().x, p->GetPos().y));
+        factories[i]->CollisionProjectilePlayer(p);
     }
 
     /*for (int i = 0; i < factories.size(); i++)
@@ -181,6 +181,50 @@ void EnemyManager::UpdatePredators(Pvector playerPos)
         preds[i]->Seek(playerPos);
 
         preds[i]->Update();
-
+        
     }
+}
+
+bool EnemyManager::CollisionSwarm(Player* e)
+{
+    sf::Vector2f pPos, ePos;
+    sf::FloatRect pBounds, eBounds;
+    ePos = e->GetPos();
+    eBounds = e->GetBounds();
+    for (auto itr = enemies.begin(); itr != enemies.end(); itr++)
+    {
+        pPos = (*itr)->GetPos();
+        pBounds = (*itr)->GetBounds();
+        //callculate distance between two points
+        float dis = sqrt(pow(ePos.x - pPos.x, 2.0f) + pow(ePos.y - pPos.y, 2.0f));
+        if ((eBounds.width / 2.0f) + (pBounds.width / 2.0f) > dis)
+        {
+            enemies.erase(itr);
+            e->TakeDamage();
+            return true;
+        }
+    }
+    return false;
+}
+
+bool EnemyManager::CollisionPred(Player* e)
+{
+    sf::Vector2f pPos, ePos;
+    sf::FloatRect pBounds, eBounds;
+    ePos = e->GetPos();
+    eBounds = e->GetBounds();
+    for (auto itr = preds.begin(); itr != preds.end(); itr++)
+    {
+        pPos = (*itr)->GetPos();
+        pBounds = (*itr)->GetBounds();
+        //callculate distance between two points
+        float dis = sqrt(pow(ePos.x - pPos.x, 2.0f) + pow(ePos.y - pPos.y, 2.0f));
+        if ((eBounds.width / 2.0f) + (pBounds.width / 2.0f) > dis)
+        {
+            preds.erase(itr);
+            e->TakeDamage();
+            return true;
+        }
+    }
+    return false;
 }

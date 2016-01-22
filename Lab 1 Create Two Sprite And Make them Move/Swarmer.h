@@ -13,8 +13,8 @@ class Swarmer {
 
 	bool slow_before_player;
 	float rotation = 0.2;//Radiants
-	float speed = 3.0f;
-	float max_speed = 3.0f;
+	float speed = 5.0f;
+	float max_speed = 5.0f;
 	float decelerate = 0.1f;
 	float radius_slow_approach = 5;
 	float spritePosOffSet = 16;//sprite size / 2; sprite size == 32
@@ -35,16 +35,16 @@ public:
 
 	void applyForce(Pvector force);//!<  adds a force to the acceleration.
 	//! Three Laws that boids follow
-	Pvector Separation(vector<Swarmer*> enemies);
-	Pvector Alignment(vector<Swarmer*> enemies);
-	Pvector Cohesion(vector<Swarmer*> enemies);
+	Pvector Separation(std::vector<Swarmer*> enemies);
+	Pvector Alignment(std::vector<Swarmer*> enemies);
+	Pvector Cohesion(std::vector<Swarmer*> enemies);
 	Pvector seek(Pvector v);//!< not used.
-	void run(vector <Swarmer*> v);//!< calls flocking followed by the update and borders check.
+	void run(std::vector <Swarmer*> v);//!< calls flocking followed by the update and borders check.
 	void update();//!< scales the acceleration and applies it and the veloicty to the location of the swarmer.
-	void flock(vector <Swarmer*> v);//!< flocks the Swarmer to a point with a groupe that is sent to the method.
+	void flock(std::vector <Swarmer*> v);//!< flocks the Swarmer to a point with a groupe that is sent to the method.
 	void borders();//!< screen rap for the large area.
 	float angle(Pvector v);
-	void swarm(vector <Swarmer*> v);//!< swarms the swarmer to a point with a groupe provided.
-	void swarmToPoint(vector <Swarmer*> v, Pvector pos); //!< swarms the swarmer to a point with a groupe provided.
+	void swarm(std::vector <Swarmer*> v);//!< swarms the swarmer to a point with a groupe provided.
+	void swarmToPoint(std::vector <Swarmer*> v, Pvector pos); //!< swarms the swarmer to a point with a groupe provided.
 };
 #endif

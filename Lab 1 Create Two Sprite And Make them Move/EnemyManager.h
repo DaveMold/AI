@@ -2,14 +2,12 @@
 #define _ENMEYMANAGER_H
 
 
-using namespace std;
-
 class EnemyManager {
 private:
 
-    vector<Swarmer*> enemies;
-    vector<Factory *> factories;
-    vector<Predator*> preds;
+    std::vector<Swarmer*> enemies;
+    std::vector<Factory *> factories;
+    std::vector<Predator*> preds;
 	int swarmingRange; //when the swarming enemies are with in this range they will stop flocking to swarm on the player.
 	enum swarmAIType { SWARM, FLOCKING };
 	swarmAIType swarmAI;
@@ -31,5 +29,7 @@ public:
 	void swarmEAI(Pvector target);
     void addPredator(float x, float y, Factory* owner);
     void UpdatePredators(Pvector playerPos);
+    bool CollisionSwarm(Player * e);
+    bool CollisionPred(Player * e);
 };
 #endif

@@ -12,26 +12,26 @@ Factory::Factory(EnemyManager* eMan)
     velocity = new Pvector(rand() % 3 - 2, rand() % 3 - 2); // Allows for range of -2 -> 2
     location = new Pvector(rand() % 6000 + 1, rand() % 5000 + 1);//x, y);
     creationTimer.restart();
-	range = 300;
-	projectiles.reserve(2);
+    range = 300;
+    projectiles.reserve(2);
 }
 
 void Factory::Update(Pvector* target)
 {
 
-	if (sqrt(pow(target->x - sprite.getPosition().x, 2.0f) + pow(target->y - sprite.getPosition().y, 2.0f)) < range && projectiles.size() < 3)
-	{
-		projectiles.push_back(new Projectile(sf::Vector2f(target->x, target->y), sprite.getPosition()));
-	}
+    if (sqrt(pow(target->x - sprite.getPosition().x, 2.0f) + pow(target->y - sprite.getPosition().y, 2.0f)) < range && projectiles.size() < 3)
+    {
+        projectiles.push_back(new Projectile(sf::Vector2f(target->x, target->y), sprite.getPosition()));
+    }
 
-	for (auto itr = projectiles.begin(); itr != projectiles.end(); itr++)
-	{
-		if ((*itr)->UpdateSeeking(*target))
-{
-			projectiles.erase(itr);
-			break;
-		}
-	}
+    for (auto itr = projectiles.begin(); itr != projectiles.end(); itr++)
+    {
+        if ((*itr)->UpdateSeeking(*target))
+        {            
+            projectiles.erase(itr);
+            break;
+        }
+    }
 
     //To make the slow down not as abrupt
     acceleration->mulScalar(.4);
@@ -49,9 +49,9 @@ void Factory::Update(Pvector* target)
         {
             numPredsOwned++;
             eManager->addPredator(location->x, location->y, this);
-        creationTimer.restart();
+            creationTimer.restart();
+        }
     }
-}
 }
 
 void Factory::Draw(sf::RenderWindow &w, sf::Vector2f &wb)
@@ -59,10 +59,10 @@ void Factory::Draw(sf::RenderWindow &w, sf::Vector2f &wb)
     borders();
     sprite.setPosition(sf::Vector2f(location->x, location->y));
     w.draw(sprite);
-	for (auto itr = projectiles.begin(); itr != projectiles.end(); itr++)
-	{
-		(*itr)->Draw(w);
-}
+    for (auto itr = projectiles.begin(); itr != projectiles.end(); itr++)
+    {
+        (*itr)->Draw(w);
+    }
 }
 
 Factory::~Factory()
@@ -172,8 +172,8 @@ Pvector Factory::Avoid(Pvector playerLocation)
     if (location->distance(playerLocation) < 200)
     {
         Pvector desired = *location - playerLocation;
-       // desired.subVector(playerLocation);  // A vector pointing from the location to the target
-                               // Normalize desired and scale to maximum speed
+        // desired.subVector(playerLocation);  // A vector pointing from the location to the target
+                                // Normalize desired and scale to maximum speed
         desired.normalize();
         desired.mulScalar(speed);
         // Steering = Desired minus Velocity
@@ -216,23 +216,23 @@ sf::FloatRect Factory::GetBounds()
 
 bool Factory::CollisionProjectilePlayer(Player* p)
 {
-	sf::Vector2f pPos, ePos;
-	sf::FloatRect pBounds, eBounds;
-	ePos = p->GetPos();
-	eBounds = p->GetBounds();
-	for (auto itr = projectiles.begin(); itr != projectiles.end(); itr++)
-	{
-		pPos = (*itr)->GetPos();
-		pBounds = (*itr)->GetBounds();
-		//callculate distance between two points
-		float dis = sqrt(pow(ePos.x - pPos.x, 2.0f) + pow(ePos.y - pPos.y, 2.0f));
-		if ((eBounds.width / 2.0f) + (pBounds.width / 2.0f) > dis)
-		{
-			projectiles.erase(itr);
-			return true;
-		}
-	}
-	return false;
+    sf::Vector2f pPos, ePos;
+    sf::FloatRect pBounds, eBounds;
+    ePos = p->GetPos();
+    eBounds = p->GetBounds();
+    for (auto itr = projectiles.begin(); itr != projectiles.end(); itr++)
+    {
+        pPos = (*itr)->GetPos();
+        pBounds = (*itr)->GetBounds();
+        //callculate distance between two points
+        float dis = sqrt(pow(ePos.x - pPos.x, 2.0f) + pow(ePos.y - pPos.y, 2.0f));
+        if ((eBounds.width / 2.0f) + (pBounds.width / 2.0f) > dis)
+        {
+            projectiles.erase(itr);
+            return true;
+        }
+    }
+    return false;
 }
 
 void Factory::removePred()

@@ -6,8 +6,6 @@
 #include "SFML/Graphics.hpp"
 #include "Pvector.h"
 
-using namespace std;
-
 class Projectile {
 private:
 	sf::Texture texture;

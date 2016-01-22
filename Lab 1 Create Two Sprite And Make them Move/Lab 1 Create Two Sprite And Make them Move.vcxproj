@@ -191,6 +191,7 @@
     <Image Include="..\..\Resorces\Img\Blackhole2.png" />
     <Image Include="Resorces\Img\Player\Player.png" />
     <Image Include="Resorces\Img\Predator\Predator .png" />
+    <Image Include="Resorces\Img\Swarmer\Swarmer.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

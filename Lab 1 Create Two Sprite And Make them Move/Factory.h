@@ -65,7 +65,7 @@ private:
     int numPredsOwned = 0;
     int maxNumPreds = 2;
     sf::Clock creationTimer;
-    const float CreationTime = 5;
+    const float CreationTime = 10;
 
 	//Seeking Projectiles
 	std::vector<Projectile*> projectiles;

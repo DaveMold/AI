@@ -100,5 +100,8 @@
     <Image Include="Resorces\Img\Predator\Predator .png">
       <Filter>Resource Files\Img</Filter>
     </Image>
+    <Image Include="Resorces\Img\Swarmer\Swarmer.png">
+      <Filter>Resource Files\Img</Filter>
+    </Image>
   </ItemGroup>
 </Project>

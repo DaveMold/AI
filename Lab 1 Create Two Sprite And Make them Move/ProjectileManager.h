@@ -6,7 +6,6 @@
 #include "SFML/Graphics.hpp"
 #include "Projectile.h"
 
-using namespace std;
 
 class ProjectileManager {
 private:

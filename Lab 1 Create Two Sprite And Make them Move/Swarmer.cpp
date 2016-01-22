@@ -12,9 +12,9 @@ Swarmer::Swarmer(float x, float y) {
 
 	slow_before_player = true;
 	if (slow_before_player == true)
-		texture.loadFromFile("Resorces/Img/BlackHole1.png");
+		texture.loadFromFile("Resorces/Img/Swarmer/Swarmer.png");
 	else
-		texture.loadFromFile("Resorces/Img/BlackHole2.png");
+		texture.loadFromFile("Resorces/Img/Swarmer/Swarmer.png");
 	sprite.setTexture(texture);
 	/*sprite.setPosition(rand() % 750 + 1, rand() % 550 + 1);
 	direction = sf::Vector2f(0.03, 0);*/
@@ -87,7 +87,7 @@ void Swarmer::applyForce(Pvector force)
 	acceleration->addVector(force);
 }
 
-Pvector Swarmer::Separation(vector<Swarmer*> enemies)
+Pvector Swarmer::Separation(std::vector<Swarmer*> enemies)
 {
 	// If the enemy we're looking at is a predator, do not run the separation
 	// algorithm
@@ -149,7 +149,7 @@ Pvector Swarmer::Separation(vector<Swarmer*> enemies)
 	return steer;
 }
 
-Pvector Swarmer::Alignment(vector<Swarmer*> enemies)
+Pvector Swarmer::Alignment(std::vector<Swarmer*> enemies)
 {
 	// algorithm
 	float neighbordist = 50;
@@ -183,7 +183,7 @@ Pvector Swarmer::Alignment(vector<Swarmer*> enemies)
 	}
 }
 
-Pvector Swarmer::Cohesion(vector<Swarmer*> enemies)
+Pvector Swarmer::Cohesion(std::vector<Swarmer*> enemies)
 {
 	// algorithm
 	float neighbordist = 50;
@@ -236,14 +236,14 @@ void Swarmer::update()
 	acceleration->mulScalar(0);
 }
 
-void Swarmer::run(vector <Swarmer*> v)
+void Swarmer::run(std::vector <Swarmer*> v)
 {
 	flock(v);
 	update();
 	borders();
 }
 
-void Swarmer::flock(vector<Swarmer*> v)
+void Swarmer::flock(std::vector<Swarmer*> v)
 {
 	Pvector sep = Separation(v);
 	Pvector ali = Alignment(v);
@@ -273,7 +273,7 @@ float Swarmer::angle(Pvector v)
 	return angle;
 }
 
-void Swarmer::swarm(vector <Swarmer*> v)
+void Swarmer::swarm(std::vector <Swarmer*> v)
 {
 	/*		Lenard-Jones Potential function
 	Vector R = me.position - you.position
@@ -301,7 +301,7 @@ void Swarmer::swarm(vector <Swarmer*> v)
 	borders();
 }
 
-void Swarmer::swarmToPoint(vector <Swarmer*> v, Pvector pos)
+void Swarmer::swarmToPoint(std::vector <Swarmer*> v, Pvector pos)
 {
 	/*		Lenard-Jones Potential function
 	Vector R = me.position - you.position

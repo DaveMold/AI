@@ -5,7 +5,7 @@
 Player::Player() {
 	texture.loadFromFile("Resorces/Img/Player/Player.png");
 	sprite.setTexture(texture);
-	sprite.setPosition(400, 100);
+	sprite.setPosition(3000, 2000);
 	followPlayer.setCenter(400, 300);
 	followPlayer.setSize(800, 600);
 	followPlayer.setViewport(sf::FloatRect(0, 0, 1, 1));
@@ -96,4 +96,14 @@ sf::View Player::getMiniMapView() {
 
 void Player::Draw(sf::RenderWindow &w) {
 	w.draw(sprite);
+}
+
+void Player::TakeDamage()
+{
+    if (health > 0) { health--; }
+    if (health <= 0)
+    {
+        sprite.setPosition(3000, 2000);
+        health = 5;
+    }
 }

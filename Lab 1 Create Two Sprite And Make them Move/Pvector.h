@@ -1,6 +1,3 @@
-
-using namespace std;
-
 #ifndef PVECTOR_H_
 #define PVECTOR_H_
 
