@@ -22,15 +22,14 @@ private:
 	float maxSteeringForce;// = 1.0f;
 	Pvector* location;
 public:
-	Projectile(sf::Vector2f dir, sf::Vector2f pos);
+	Projectile(sf::Vector2f dir, sf::Vector2f pos);//!< constructor.
 	~Projectile();
-	void SetPos(sf::Vector2f pos);
-	bool Update();
-	bool UpdateSeeking(Pvector target);
-	Pvector Seek(Pvector v);
-	void Draw(sf::RenderWindow &w);
-	bool ScreenBounds(sf::RenderWindow &w);
-	sf::Vector2f GetPos();
-	sf::FloatRect GetBounds();
+	void SetPos(sf::Vector2f pos);//!<  sets the projectiles sprite posisiton.
+	bool Update();//!<  updates the projectile to translate to a location and delete its self when it has excided its range.
+	bool UpdateSeeking(Pvector target);//!< seeks to the target location and delets its self on collision.
+	void Draw(sf::RenderWindow &w);//!<  Draws the projectile.
+	bool ScreenBounds(sf::RenderWindow &w);//!< basic screen rap for the large area.
+	sf::Vector2f GetPos();//!< gets the projectile posision to use for collision detection for other classes.
+	sf::FloatRect GetBounds();//!< gets the Bounds posision to use for collision detection for other classes.
 };
 #endif

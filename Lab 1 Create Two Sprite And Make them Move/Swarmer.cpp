@@ -85,7 +85,6 @@ sf::FloatRect Swarmer::GetBounds() {
 void Swarmer::applyForce(Pvector force)
 {
 	acceleration->addVector(force);
-    
 }
 
 Pvector Swarmer::Separation(vector<Swarmer*> enemies)

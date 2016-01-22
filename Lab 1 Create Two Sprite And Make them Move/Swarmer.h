@@ -5,7 +5,7 @@
 class Swarmer {
 
 	//vairbles
-	Pvector* location;
+	Pvector* location;//!< used to 
 	Pvector*  velocity;// = 0.03;
 	Pvector* acceleration;// = 0.01;
 	float maxSpeed = 0.03;
@@ -23,29 +23,28 @@ class Swarmer {
 	sf::Sprite sprite;
 
 public:
-	Swarmer(float x, float y);
-	void Move(sf::Vector2f target);
-	void SetPos(sf::Vector2f pos);
-	void SpeedUp();
-	void SlowDown();
-	void Draw(sf::RenderWindow &w, sf::Vector2f &wb);
-	sf::Vector2f GetPos();
-	sf::FloatRect GetBounds();
+	Swarmer(float x, float y);//!< constructor
+	void Move(sf::Vector2f target);//!< moves to the target and slows and comes to a stop before colliding.
+	void SetPos(sf::Vector2f pos);//!< sets the pos of the sprite.
+	void SpeedUp();//!< increases the speed.
+	void SlowDown();//!<  decreases the speed of the object.
+	void Draw(sf::RenderWindow &w, sf::Vector2f &wb);//!<  Draws the Swarmer.
+	sf::Vector2f GetPos();//!< gets the posision of the object for collsiion checks in other classes.
+	sf::FloatRect GetBounds();//!<  gets the size of the object for collision checks in other classes.
 
 
-	void applyForce(Pvector force);
-	// Three Laws that boids follow
+	void applyForce(Pvector force);//!<  adds a force to the acceleration.
+	//! Three Laws that boids follow
 	Pvector Separation(vector<Swarmer*> enemies);
 	Pvector Alignment(vector<Swarmer*> enemies);
 	Pvector Cohesion(vector<Swarmer*> enemies);
-	//Functions involving SFML and visualisation linking
-	Pvector seek(Pvector v);
-	void run(vector <Swarmer*> v);
-	void update();
-	void flock(vector <Swarmer*> v);
-	void borders();
+	Pvector seek(Pvector v);//!< not used.
+	void run(vector <Swarmer*> v);//!< calls flocking followed by the update and borders check.
+	void update();//!< scales the acceleration and applies it and the veloicty to the location of the swarmer.
+	void flock(vector <Swarmer*> v);//!< flocks the Swarmer to a point with a groupe that is sent to the method.
+	void borders();//!< screen rap for the large area.
 	float angle(Pvector v);
-	void swarm(vector <Swarmer*> v);
-	void swarmToPoint(vector <Swarmer*> v, Pvector pos);
+	void swarm(vector <Swarmer*> v);//!< swarms the swarmer to a point with a groupe provided.
+	void swarmToPoint(vector <Swarmer*> v, Pvector pos); //!< swarms the swarmer to a point with a groupe provided.
 };
 #endif
