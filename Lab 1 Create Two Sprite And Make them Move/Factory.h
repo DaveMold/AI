@@ -32,6 +32,11 @@ public:
     Pvector getAlignment() { return alignment; }
     Pvector getCohesion() { return cohesion; }
     Pvector getSeperation() { return seperation; }
+    int getNumPredsOwned() { return numPredsOwned; }
+    int getHealth() { return Health; }
+
+    void DealDamage();
+    void removePred();
 
 private:
     EnemyManager* eManager;
@@ -52,7 +57,9 @@ private:
     Pvector seperation;
     int flockingDistance = 300;
     int neighborCount;
-
+    int Health = 4;
+    int numPredsOwned = 0;
+    int maxNumPreds = 2;
     sf::Clock creationTimer;
     const float CreationTime = 5;
 };

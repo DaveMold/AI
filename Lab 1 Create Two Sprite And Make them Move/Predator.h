@@ -3,7 +3,7 @@ class Predator
 {
 public:
     Predator();
-    Predator(float x, float y);
+    Predator(float x, float y,Factory* fac);
     ~Predator();
     void Update();
     void Draw(sf::RenderWindow & w, sf::Vector2f & wb);
@@ -32,6 +32,8 @@ public:
     Pvector getCohesion() { return cohesion; }
     Pvector getSeperation() { return seperation; }
 
+    Factory* getOwner() { return owner; }
+
 private:
     sf::Texture texture;
     sf::Vector2f direction;
@@ -44,6 +46,8 @@ private:
     Pvector* location;
     Pvector*  velocity;// = 0.03;
     Pvector* acceleration;// = 0.01;
+
+    Factory* owner;
 
     Pvector alignment;
     Pvector cohesion;

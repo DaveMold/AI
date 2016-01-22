@@ -28,8 +28,12 @@ void Factory::Update()
 
     if (creationTimer.getElapsedTime().asSeconds() > CreationTime)
     {
-        eManager->addPredator(location->x, location->y);
-        creationTimer.restart();
+        if (numPredsOwned < maxNumPreds)
+        {
+            numPredsOwned++;
+            eManager->addPredator(location->x, location->y, this);
+            creationTimer.restart();
+        }
     }
 }
 
@@ -187,4 +191,14 @@ sf::Vector2f Factory::GetPos()
 sf::FloatRect Factory::GetBounds()
 {
     return sprite.getGlobalBounds();
+}
+
+void Factory::removePred()
+{
+    if (numPredsOwned > 0) { numPredsOwned--; }
+}
+
+void Factory::DealDamage()
+{
+    Health--;
 }

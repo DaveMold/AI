@@ -10,9 +10,10 @@ Predator::Predator()
     velocity = new Pvector(rand() % 3 - 2, rand() % 3 - 2); // Allows for range of -2 -> 2
 }
 
-Predator::Predator(float x, float y) : Predator()
+Predator::Predator(float x, float y, Factory* fac) : Predator()
 {
-    location = new Pvector(x,y);//x, y);
+    owner = fac;
+    location = new Pvector(x, y);//x, y);
 }
 
 
@@ -31,7 +32,7 @@ void Predator::Update()
     location->addVector(*velocity);
     // Reset accelertion to 0 each cycle
     acceleration->mulScalar(0);
-    float angle =  std::atan2(velocity->y, velocity->x) * (180 / PI);
+    float angle = std::atan2(velocity->y, velocity->x) * (180 / PI);
     sprite.setRotation(angle);
 }
 
@@ -140,15 +141,15 @@ void Predator::CalculateSeperation(std::vector<Predator*> preds)
 
 Pvector Predator::Seek(Pvector playerLocation)
 {
-        Pvector desired = playerLocation - *location;
-        // desired.subVector(playerLocation);  // A vector pointing from the location to the target
-        // Normalize desired and scale to maximum speed
-        desired.normalize();
-        desired.mulScalar(speed);
-        // Steering = Desired minus Velocity
-        *acceleration = desired - *velocity;
-        acceleration->limit(maxSteeringForce);  // Limit to maximum steering force
-        return *acceleration;
+    Pvector desired = playerLocation - *location;
+    // desired.subVector(playerLocation);  // A vector pointing from the location to the target
+    // Normalize desired and scale to maximum speed
+    desired.normalize();
+    desired.mulScalar(speed);
+    // Steering = Desired minus Velocity
+    *acceleration = desired - *velocity;
+    acceleration->limit(maxSteeringForce);  // Limit to maximum steering force
+    return *acceleration;
 }
 
 sf::Vector2f Predator::GetPos()

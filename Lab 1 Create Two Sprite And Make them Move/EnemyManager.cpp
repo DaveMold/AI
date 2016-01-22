@@ -27,7 +27,7 @@ void EnemyManager::Draw(sf::RenderWindow &w, sf::Vector2f &wb)
     for (int i = 0; i < size; i++)
     {
         preds[i]->Draw(w, wb);
-}
+    }
 }
 
 int EnemyManager::getSize()
@@ -60,7 +60,7 @@ void EnemyManager::CheckCollisions()
     {
         if (ProjectileManager::instance()->CollisionSwarm(enemies[i]))
         {
-            enemies.erase(std::remove(enemies.begin(),enemies.end(),enemies[i]),enemies.end());
+            enemies.erase(std::remove(enemies.begin(), enemies.end(), enemies[i]), enemies.end());
             size--;
         }
     }
@@ -69,8 +69,12 @@ void EnemyManager::CheckCollisions()
     {
         if (ProjectileManager::instance()->CollisionFac(factories[i]))
         {
-            factories.erase(std::remove(factories.begin(), factories.end(), factories[i]), factories.end());
-            size--;
+            factories[i]->DealDamage();
+            if (factories[i]->getHealth() <= 0)
+            {
+                factories.erase(std::remove(factories.begin(), factories.end(), factories[i]), factories.end());
+                size--;
+            }
         }
     }
     size = preds.size();
@@ -78,11 +82,12 @@ void EnemyManager::CheckCollisions()
     {
         if (ProjectileManager::instance()->CollisionPred(preds[i]))
         {
+            preds[i]->getOwner()->removePred();
             preds.erase(std::remove(preds.begin(), preds.end(), preds[i]), preds.end());
             size--;
         }
     }
-        
+
 }
 
 void EnemyManager::swarming(Pvector mousepos)
@@ -130,34 +135,34 @@ void EnemyManager::swarmEAI(Pvector target)
         //callculate distance between two points
         float dis = sqrt(pow(ePos.x - target.x, 2.0f) + pow(ePos.y - target.y, 2.0f));
         if (dis <= swarmingRange)
-			(*itr)->swarmToPoint(enemies, target);
+            (*itr)->swarmToPoint(enemies, target);
         else
-			(*itr)->run(enemies);
+            (*itr)->run(enemies);
     }
 
-   /* switch (swarmAI)
-    {
-        case SWARM:
-            for (auto itr = enemies.begin(); itr != enemies.end(); itr++)
-            {
-                (*itr)->swarmToPoint(enemies, target);
-            }
-            break;
-        case FLOCKING:
-            for (auto itr = enemies.begin(); itr != enemies.end(); itr++)
-            {
-                (*itr)->flock(enemies);
-            }
-            break;
-        default:
-            std::cout << "default EM::swarmAI" << std::endl;
-            break;
-    }*/
+    /* switch (swarmAI)
+     {
+         case SWARM:
+             for (auto itr = enemies.begin(); itr != enemies.end(); itr++)
+             {
+                 (*itr)->swarmToPoint(enemies, target);
+             }
+             break;
+         case FLOCKING:
+             for (auto itr = enemies.begin(); itr != enemies.end(); itr++)
+             {
+                 (*itr)->flock(enemies);
+             }
+             break;
+         default:
+             std::cout << "default EM::swarmAI" << std::endl;
+             break;
+     }*/
 }
 
-void EnemyManager::addPredator(float x, float y)
+void EnemyManager::addPredator(float x, float y, Factory* owner)
 {
-    preds.push_back(new Predator(x, y));
+    preds.push_back(new Predator(x, y, owner));
 }
 
 void EnemyManager::UpdatePredators(Pvector playerPos)
@@ -175,6 +180,6 @@ void EnemyManager::UpdatePredators(Pvector playerPos)
         preds[i]->Seek(playerPos);
 
         preds[i]->Update();
-        
+
     }
 }

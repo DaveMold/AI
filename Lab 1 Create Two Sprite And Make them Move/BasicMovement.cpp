@@ -69,8 +69,6 @@ int main()
     int numSwarmerEnemies = numPacksSwarmers * numSwarmersPerPack;
     int numFactories = 20;
 
-    eManager.addPredator(100, 100);
-
     //create some Enemies
     for (int i = 0; i < numPacksSwarmers; i++)
     {
