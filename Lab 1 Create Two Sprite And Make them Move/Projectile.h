@@ -13,16 +13,21 @@ private:
 	sf::Texture texture;
 	sf::Sprite sprite;
 	float speed;
-	float acceleration;// = 0.01;
 	sf::Vector2f direction;
 	float spritePosOffSet;
 	sf::Vector2f startPos;
 	int range;
+	Pvector*  velocity;// = 0.03;
+	Pvector* acceleration;// = 0.01;
+	float maxSteeringForce;// = 1.0f;
+	Pvector* location;
 public:
 	Projectile(sf::Vector2f dir, sf::Vector2f pos);
 	~Projectile();
 	void SetPos(sf::Vector2f pos);
 	bool Update();
+	bool UpdateSeeking(Pvector target);
+	Pvector Seek(Pvector v);
 	void Draw(sf::RenderWindow &w);
 	bool ScreenBounds(sf::RenderWindow &w);
 	sf::Vector2f GetPos();

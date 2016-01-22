@@ -25,7 +25,7 @@ public:
 	void SpeedUp();
 	void SlowDown();
 	void Draw(sf::RenderWindow &w);
-
+	sf::FloatRect GetBounds();
     Pvector* getVelocity() { return velocity; }
 };
 #endif
