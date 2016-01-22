@@ -18,6 +18,10 @@ public:
 
     Pvector Seek(Pvector playerLocation);
 
+    sf::Vector2f GetPos();
+
+    sf::FloatRect GetBounds();
+
     Pvector* getVelocity() { return velocity; }
     void setVelocity(Pvector velo) { *velocity = velo; }
     Pvector* getLocation() { return location; }

@@ -178,3 +178,13 @@ void Factory::borders()
     if (location->y < 0) location->y = MAP_HEIGHT;
     else if (location->y > MAP_HEIGHT) location->y = 0;
 }
+
+sf::Vector2f Factory::GetPos()
+{
+    return sprite.getPosition();
+}
+
+sf::FloatRect Factory::GetBounds()
+{
+    return sprite.getGlobalBounds();
+}

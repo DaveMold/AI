@@ -17,6 +17,8 @@ public:
     Pvector Avoid(Pvector playerLocation);
     void applyForce(Pvector force);
     void borders();
+    sf::Vector2f GetPos();
+    sf::FloatRect GetBounds();
     //void borders();
     void Draw(sf::RenderWindow & w, sf::Vector2f &wb);
     ~Factory();

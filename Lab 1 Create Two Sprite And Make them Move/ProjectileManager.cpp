@@ -25,7 +25,7 @@ void ProjectileManager::Update(sf::RenderWindow &w) {
 	std::vector<Projectile*>::iterator removeItr;
 	for (auto itr = projectiles.begin(); itr != projectiles.end(); itr++) {
 		//(*itr)->Update();
-		if ((*itr)->ScreenBounds(w) || (*itr)->Update())
+		if ((*itr)->Update())
 		{
 			removed = false;
 			removeItr = itr;
@@ -50,7 +50,7 @@ void ProjectileManager::AddProjectile(sf::Vector2f dir, sf::Vector2f pos) {
 }
 
 
-bool ProjectileManager::Collision(Swarmer* e) {
+bool ProjectileManager::CollisionSwarm(Swarmer* e) {
 	sf::Vector2f pPos, ePos;
 	sf::FloatRect pBounds, eBounds;
 	ePos = e->GetPos();
@@ -67,4 +67,45 @@ bool ProjectileManager::Collision(Swarmer* e) {
 		}
 	}
 	return false;
+}
+
+bool ProjectileManager::CollisionFac(Factory* e)
+{
+    sf::Vector2f pPos, ePos;
+    sf::FloatRect pBounds, eBounds;
+    ePos = e->GetPos();
+    eBounds = e->GetBounds();
+    for (auto itr = projectiles.begin(); itr != projectiles.end(); itr++)
+    {
+        pPos = (*itr)->GetPos();
+        pBounds = (*itr)->GetBounds();
+        //callculate distance between two points
+        float dis = sqrt(pow(ePos.x - pPos.x, 2.0f) + pow(ePos.y - pPos.y, 2.0f));
+        if ((eBounds.width / 2.0f) + (pBounds.width / 2.0f) > dis)
+        {
+            projectiles.erase(itr);
+            return true;
+        }
+    }
+    return false;
+}
+bool ProjectileManager::CollisionPred(Predator* e)
+{
+    sf::Vector2f pPos, ePos;
+    sf::FloatRect pBounds, eBounds;
+    ePos = e->GetPos();
+    eBounds = e->GetBounds();
+    for (auto itr = projectiles.begin(); itr != projectiles.end(); itr++)
+    {
+        pPos = (*itr)->GetPos();
+        pBounds = (*itr)->GetBounds();
+        //callculate distance between two points
+        float dis = sqrt(pow(ePos.x - pPos.x, 2.0f) + pow(ePos.y - pPos.y, 2.0f));
+        if ((eBounds.width / 2.0f) + (pBounds.width / 2.0f) > dis)
+        {
+            projectiles.erase(itr);
+            return true;
+        }
+    }
+    return false;
 }

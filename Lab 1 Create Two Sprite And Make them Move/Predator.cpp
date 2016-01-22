@@ -150,3 +150,13 @@ Pvector Predator::Seek(Pvector playerLocation)
         acceleration->limit(maxSteeringForce);  // Limit to maximum steering force
         return *acceleration;
 }
+
+sf::Vector2f Predator::GetPos()
+{
+    return sprite.getPosition();
+}
+
+sf::FloatRect Predator::GetBounds()
+{
+    return sprite.getGlobalBounds();
+}

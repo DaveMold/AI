@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "EnemyManager.h"
 
-EnemyManager::EnemyManager() : swarmingRange(100), swarmAI(FLOCKING)
+EnemyManager::EnemyManager() : swarmingRange(200), swarmAI(FLOCKING)
 {
 
 }
@@ -27,7 +27,7 @@ void EnemyManager::Draw(sf::RenderWindow &w, sf::Vector2f &wb)
     for (int i = 0; i < size; i++)
     {
         preds[i]->Draw(w, wb);
-    }
+}
 }
 
 int EnemyManager::getSize()
@@ -53,14 +53,32 @@ void EnemyManager::flocking()
     }
 }
 
-void EnemyManager::swarmECollision()
+void EnemyManager::CheckCollisions()
 {
     int size = enemies.size();
     for (int i = 0; i < size; i++)
     {
-        if (ProjectileManager::instance()->Collision(enemies[i]))
+        if (ProjectileManager::instance()->CollisionSwarm(enemies[i]))
         {
             enemies.erase(std::remove(enemies.begin(),enemies.end(),enemies[i]),enemies.end());
+            size--;
+        }
+    }
+    size = factories.size();
+    for (int i = 0; i < size; i++)
+    {
+        if (ProjectileManager::instance()->CollisionFac(factories[i]))
+        {
+            factories.erase(std::remove(factories.begin(), factories.end(), factories[i]), factories.end());
+            size--;
+        }
+    }
+    size = preds.size();
+    for (int i = 0; i < size; i++)
+    {
+        if (ProjectileManager::instance()->CollisionPred(preds[i]))
+        {
+            preds.erase(std::remove(preds.begin(), preds.end(), preds[i]), preds.end());
             size--;
         }
     }
@@ -111,13 +129,13 @@ void EnemyManager::swarmEAI(Pvector target)
         ePos = (*itr)->GetPos();
         //callculate distance between two points
         float dis = sqrt(pow(ePos.x - target.x, 2.0f) + pow(ePos.y - target.y, 2.0f));
-        if (dis < swarmingRange)
-            swarmAI = SWARM;
+        if (dis <= swarmingRange)
+			(*itr)->swarmToPoint(enemies, target);
         else
-            swarmAI = FLOCKING;
+			(*itr)->run(enemies);
     }
 
-    switch (swarmAI)
+   /* switch (swarmAI)
     {
         case SWARM:
             for (auto itr = enemies.begin(); itr != enemies.end(); itr++)
@@ -134,7 +152,7 @@ void EnemyManager::swarmEAI(Pvector target)
         default:
             std::cout << "default EM::swarmAI" << std::endl;
             break;
-    }
+    }*/
 }
 
 void EnemyManager::addPredator(float x, float y)

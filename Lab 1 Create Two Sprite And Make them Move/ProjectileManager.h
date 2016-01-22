@@ -21,6 +21,8 @@ public:
 	void AddProjectile(sf::Vector2f dir, sf::Vector2f pos);
 
 
-	bool Collision(Swarmer* e);
+	bool CollisionSwarm(Swarmer* e);
+    bool CollisionFac(Factory* e);
+    bool CollisionPred(Predator* e);
 };
 #endif

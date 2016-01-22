@@ -25,7 +25,7 @@ public:
 	void addEnemy(Swarmer* b);
     void addFactory(Factory* fac);
 	void flocking();
-	void swarmECollision();
+	void CheckCollisions();
 	void swarming(Pvector mousepos);
     void UpdateFactories(Pvector playerVelo);
 	void swarmEAI(Pvector target);
