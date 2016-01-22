@@ -1,6 +1,8 @@
 #ifndef FACTORY_H
 #define FACTORY_H
 
+#include "stdafx.h"
+
 class EnemyManager;
 
 class Factory
@@ -9,7 +11,7 @@ class Factory
 public:
     Factory(EnemyManager* eMan);
 
-    void Update();
+    void Update(Pvector* target);
     void CalculateAlignment(std::vector<Factory*> facs);
     void CalculateCohesion(std::vector<Factory*> facs);
     void CalculateSeperation(std::vector<Factory*> facs);
@@ -17,6 +19,7 @@ public:
     Pvector Avoid(Pvector playerLocation);
     void applyForce(Pvector force);
     void borders();
+	bool CollisionProjectilePlayer(Player* p);
     sf::Vector2f GetPos();
     sf::FloatRect GetBounds();
     //void borders();
@@ -46,6 +49,7 @@ private:
     float rotation = 0.2;//Radiants
     float speed = 1.5f;
     float maxSteeringForce = 1.0f;
+	float range;
 
     float spritePosOffSet = 16;
     Pvector* location;
@@ -62,6 +66,9 @@ private:
     int maxNumPreds = 2;
     sf::Clock creationTimer;
     const float CreationTime = 5;
+
+	//Seeking Projectiles
+	std::vector<Projectile*> projectiles;
 };
 
 #endif // !FACTORY_H

@@ -82,6 +82,10 @@ sf::Vector2f Player::GetPos() {
 	return sprite.getPosition();
 }
 
+sf::FloatRect Player::GetBounds() {
+	return sprite.getLocalBounds();
+}
+
 sf::View Player::getView() {
 	return followPlayer;
 }

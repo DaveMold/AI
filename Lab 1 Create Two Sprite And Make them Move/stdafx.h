@@ -20,13 +20,13 @@
 
 #include "Pvector.h"
 
-
+#include "Player.h"
+#include "Projectile.h"
 #include "Factory.h"
 #include "Predator.h"
-#include "Player.h"
+
 #include "Swarmer.h"
 #include "EnemyManager.h"
-#include "Projectile.h"
 #include "ProjectileManager.h"
 
 

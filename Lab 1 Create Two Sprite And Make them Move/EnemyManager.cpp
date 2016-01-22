@@ -98,7 +98,7 @@ void EnemyManager::swarming(Pvector mousepos)
     }
 }
 
-void EnemyManager::UpdateFactories(Pvector playerVelo)
+void EnemyManager::UpdateFactories(Player* p)
 {
     int size = factories.size();
     for (int i = 0; i < size; i++)
@@ -111,8 +111,9 @@ void EnemyManager::UpdateFactories(Pvector playerVelo)
             factories[i]->getAlignment().y * .7f + factories[i]->getCohesion().y * .6f + factories[i]->getSeperation().y * .75f);
 
         factories[i]->applyForce(*force);
-        factories[i]->Avoid(playerVelo);
-        factories[i]->Update();
+        factories[i]->Avoid(p->GetPos());
+        factories[i]->Update(new Pvector(p->GetPos().x,p->GetPos().y));
+		factories[i]->CollisionProjectilePlayer(p);
     }
 
     /*for (int i = 0; i < factories.size(); i++)

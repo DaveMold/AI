@@ -125,7 +125,7 @@ int main()
         }
         //eManager.flocking();
         eManager.CheckCollisions();
-        eManager.UpdateFactories(player.GetPos());
+        eManager.UpdateFactories(&player);
         eManager.UpdatePredators(player.GetPos());
 
         //prepare frame
