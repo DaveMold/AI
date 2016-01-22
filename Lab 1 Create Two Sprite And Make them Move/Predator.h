@@ -2,25 +2,25 @@
 class Predator
 {
 public:
-    Predator();
-    Predator(float x, float y,Factory* fac);
+    Predator();//!< contructor.
+    Predator(float x, float y,Factory* fac);//!< Override constructor.
     ~Predator();
-    void Update();
-    void Draw(sf::RenderWindow & w, sf::Vector2f & wb);
+    void Update();//!< scales the acceleration and applies it and the veloicty to the location of the swarmer.
+    void Draw(sf::RenderWindow & w, sf::Vector2f & wb);//!<  Draws the Predator.
 
-    void borders();
-
+    void borders();//!< screen rap for the large area.
+	//! Three Laws that boids follow
     void CalculateAlignment(std::vector<Predator*> preds);
 
     void CalculateCohesion(std::vector<Predator*> preds);
 
     void CalculateSeperation(std::vector<Predator*> preds);
 
-    Pvector Seek(Pvector playerLocation);
+    Pvector Seek(Pvector playerLocation);//!< Seek the preditor away from a point.
 
-    sf::Vector2f GetPos();
+    sf::Vector2f GetPos();//!< gets the posision of the object for collsiion checks in other classes.
 
-    sf::FloatRect GetBounds();
+    sf::FloatRect GetBounds();//!<  gets the size of the object for collision checks in other classes.
 
     Pvector* getVelocity() { return velocity; }
     void setVelocity(Pvector velo) { *velocity = velo; }

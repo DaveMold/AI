@@ -9,17 +9,18 @@ class Factory
 {
 
 public:
-    Factory(EnemyManager* eMan);
+    Factory(EnemyManager* eMan);//!< constructor
 
-    void Update(Pvector* target);
-    void CalculateAlignment(std::vector<Factory*> facs);
+    void Update(Pvector* target);//!< scales the acceleration and applies it and the veloicty to the location of the Factory. creates a projectile to and seeks it to the player when the player is in range. only two projectiles at a time though. erases them when the collide with the player.
+	//! Three Laws that boids follow  
+	void CalculateAlignment(std::vector<Factory*> facs);
     void CalculateCohesion(std::vector<Factory*> facs);
     void CalculateSeperation(std::vector<Factory*> facs);
-    void NormalizeVelocity();
-    Pvector Avoid(Pvector playerLocation);
-    void applyForce(Pvector force);
-    void borders();
-	bool CollisionProjectilePlayer(Player* p);
+    void NormalizeVelocity();//!< normalizes the velocity.
+    Pvector Avoid(Pvector playerLocation); //!< uses the reverse of the seek to stay away from the player.
+    void applyForce(Pvector force);//!< applies the force to the acceleration.
+    void borders();//!< screen rap for the large area.
+	bool CollisionProjectilePlayer(Player* p);//!< checks the distance between the plyer and projectile if it is less than the distance between there centres when touching.
     sf::Vector2f GetPos();
     sf::FloatRect GetBounds();
     //void borders();

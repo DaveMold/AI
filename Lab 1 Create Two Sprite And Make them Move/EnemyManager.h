@@ -15,14 +15,14 @@ private:
 
 public:
 	
-	EnemyManager();
+	EnemyManager();//!< constructor
 	~EnemyManager();
-	void Draw(sf::RenderWindow &w, sf::Vector2f &wb);
+	void Draw(sf::RenderWindow &w, sf::Vector2f &wb);//!<  Draws the enemies.
 	int getSize();
 	Swarmer getEnemy(int i);
-	void addEnemy(Swarmer* b);
-    void addFactory(Factory* fac);
-	void flocking();
+	void addEnemy(Swarmer* b);//!< adds a passed enemy to a list.
+    void addFactory(Factory* fac); //!< adds the factory to a list.
+	void flocking(); //!< applies flocking to the enemies.
 	void CheckCollisions();
 	void swarming(Pvector mousepos);
     void UpdateFactories(Player* p);
