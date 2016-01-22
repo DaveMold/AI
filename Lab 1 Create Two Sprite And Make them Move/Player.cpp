@@ -23,7 +23,6 @@ void Player::Move() {
     float rotation = sprite.getRotation();
     rotation *= (3.14f / 180);
 	direction = sf::Vector2f(cos(rotation), sin(rotation));
-    
 	temp += direction * speed;
 	SetPos(temp);
 }

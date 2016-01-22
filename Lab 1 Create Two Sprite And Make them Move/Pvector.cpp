@@ -156,6 +156,15 @@ void Pvector::normalize()
 	}
 }
 
+Pvector Pvector::operator-(Pvector v)
+{
+    Pvector vec;
+    vec.x = x - v.x;
+    vec.y = y - v.y;
+
+    return vec;
+}
+
 //Creates and returns a copy of the Pvector used as a parameter
 Pvector Pvector::copy(Pvector v)
 {

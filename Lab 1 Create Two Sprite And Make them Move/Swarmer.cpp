@@ -57,36 +57,6 @@ void Swarmer::Move(sf::Vector2f target) {
 	SetPos(temp);
 }
 
-sf::Vector2f Swarmer::ScreenRap(sf::Vector2f pos, sf::Vector2f &w) {
-	if (pos.x < 0 - (spritePosOffSet * 2))
-		pos.x = w.x;
-	else if (pos.x > w.x)
-		pos.x = 1 - (spritePosOffSet * 2);
-	if (pos.y < 0 - (spritePosOffSet * 2))
-		pos.y = w.y;
-	else if (pos.y > w.y + 1)
-		pos.y = 1 - (spritePosOffSet * 2);
-	return pos;
-}
-
-void Swarmer::Update(sf::Vector2f &w, sf::Vector2f target) {
-	//Key input
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-		if (slow_before_player == true)
-			slow_before_player = false;
-		else
-			slow_before_player = true;
-	}
-	if (slow_before_player == true){
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Equal))
-			radius_slow_approach++;
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Subtract))
-			radius_slow_approach--;
-	}
-	Move(target);
-	sprite.setPosition(ScreenRap(sprite.getPosition(), w));
-}
-
 void Swarmer::SpeedUp() {
 	speed += 0.0001;
 }
@@ -100,20 +70,10 @@ void Swarmer::SetPos(sf::Vector2f pos) {
 }
 
 void Swarmer::Draw(sf::RenderWindow &w, sf::Vector2f &wb) {
-	sprite.setPosition(ScreenRap(sf::Vector2f(location->x,location->y),wb));
+	sprite.setPosition(sf::Vector2f(location->x,location->y));
 	w.draw(sprite);
 }
 
-
-sf::VideoMode desktopTemp = sf::VideoMode::getDesktopMode();
-const int window_height = desktopTemp.height;
-const int window_width = desktopTemp.width;
-
-#define w_height window_height
-#define w_width window_width
-#define PI 3.141592635
-
-using namespace std;
 
 sf::Vector2f Swarmer::GetPos() {
 	return sprite.getPosition();
@@ -127,6 +87,7 @@ sf::FloatRect Swarmer::GetBounds() {
 void Swarmer::applyForce(Pvector force)
 {
 	acceleration->addVector(force);
+    
 }
 
 Pvector Swarmer::Separation(vector<Swarmer*> enemies)
@@ -298,17 +259,14 @@ void Swarmer::flock(vector<Swarmer*> v)
 	applyForce(sep);
 	applyForce(ali);
 	applyForce(coh);
-
-	update();
-	borders();
 }
 
 void Swarmer::borders()
 {
-	if (location->x < 0) location->x += w_width;
-	if (location->y < 0) location->y += w_height;
-	if (location->x > 1000) location->x -= w_width;
-	if (location->y > 1000) location->y -= w_height;
+    if (location->x < 0) location->x = MAP_WIDTH;
+    else if (location->x > MAP_WIDTH) location->x = 0;
+    if (location->y < 0) location->y = MAP_HEIGHT;
+    else if (location->y > MAP_HEIGHT) location->y = 0;
 }
 
 float Swarmer::angle(Pvector v)

@@ -22,6 +22,11 @@ public:
 	//Constructors
 	Pvector() {}
 
+    Pvector(sf::Vector2f v)
+    {
+        x = v.x;
+        y = v.y;
+    }
 	Pvector(float xComp, float yComp)
 	{
 		x = xComp;
@@ -60,6 +65,8 @@ public:
 	void setMagnitude(float x);
 	float angleBetween(Pvector v);
 	void normalize();
+
+    Pvector operator-(Pvector v);
 
 	Pvector copy(Pvector v);	
 };

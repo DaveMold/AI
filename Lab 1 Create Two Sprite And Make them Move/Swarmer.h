@@ -25,8 +25,6 @@ class Swarmer {
 public:
 	Swarmer(float x, float y);
 	void Move(sf::Vector2f target);
-	sf::Vector2f ScreenRap(sf::Vector2f pos, sf::Vector2f &w);
-	void Update(sf::Vector2f &w, sf::Vector2f target);
 	void SetPos(sf::Vector2f pos);
 	void SpeedUp();
 	void SlowDown();

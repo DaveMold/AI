@@ -1,6 +1,11 @@
 #ifndef STDAFX_H
 #define STDAFX_H
 
+
+#define MAP_WIDTH 7200
+#define MAP_HEIGHT 5400
+#define PI 3.141592635
+
 #include <windows.h>
 
 #include <iostream>

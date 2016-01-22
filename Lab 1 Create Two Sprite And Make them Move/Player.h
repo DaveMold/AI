@@ -12,6 +12,7 @@ class Player {
 	sf::Vector2f direction;
 	sf::Sprite sprite;
 	sf::View followPlayer, miniMapView;
+    Pvector* velocity;
 public:
 	Player();
 	void Move();
@@ -24,5 +25,7 @@ public:
 	void SpeedUp();
 	void SlowDown();
 	void Draw(sf::RenderWindow &w);
+
+    Pvector* getVelocity() { return velocity; }
 };
 #endif

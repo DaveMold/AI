@@ -26,7 +26,7 @@ public:
 	void flocking();
 	void swarmECollision();
 	void swarming(Pvector mousepos);
-    void UpdateFactories();
+    void UpdateFactories(Pvector playerVelo);
 	void swarmEAI(Pvector target);
 };
 #endif
