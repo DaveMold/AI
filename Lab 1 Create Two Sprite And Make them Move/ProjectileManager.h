@@ -19,6 +19,8 @@ public:
 	void Update(sf::RenderWindow &w);
 	void Draw(sf::RenderWindow &w);
 	void AddProjectile(sf::Vector2f dir, sf::Vector2f pos);
+
+
 	bool Collision(Swarmer* e);
 };
 #endif

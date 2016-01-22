@@ -20,7 +20,9 @@
 
 #include "Pvector.h"
 
+
 #include "Factory.h"
+#include "Predator.h"
 #include "Player.h"
 #include "Swarmer.h"
 #include "EnemyManager.h"

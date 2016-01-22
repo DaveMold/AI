@@ -67,7 +67,7 @@ void Player::Update(sf::Vector2f &w) {
 }
 
 void Player::SpeedUp() {
-    speed <= 2.8f ? speed += .2f : speed = 3.0f;
+    speed <= 3.8f ? speed += .2f : speed = 4.0f;
 }
 
 void Player::SlowDown() {

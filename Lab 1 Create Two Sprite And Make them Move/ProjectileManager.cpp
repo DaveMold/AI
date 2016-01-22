@@ -49,6 +49,7 @@ void ProjectileManager::AddProjectile(sf::Vector2f dir, sf::Vector2f pos) {
 	projectiles.push_back(new Projectile(dir, pos));
 }
 
+
 bool ProjectileManager::Collision(Swarmer* e) {
 	sf::Vector2f pPos, ePos;
 	sf::FloatRect pBounds, eBounds;

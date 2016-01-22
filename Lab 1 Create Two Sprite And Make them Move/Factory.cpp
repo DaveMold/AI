@@ -3,18 +3,15 @@
 
 
 
-Factory::Factory()
+Factory::Factory(EnemyManager* eMan)
 {
+    eManager = eMan;
     texture.loadFromFile("Resorces/Img/Factory.png");
     sprite.setTexture(texture);
     acceleration = new Pvector(0, 0);
     velocity = new Pvector(rand() % 3 - 2, rand() % 3 - 2); // Allows for range of -2 -> 2
-    location = new Pvector(rand() % 750 + 1, rand() % 550 + 1);//x, y);
-}
-
-Factory::Factory(int x, int y) : Factory()
-{
-    //sprite.setPosition(sf::Vector2f(x, y));
+    location = new Pvector(rand() % 6000 + 1, rand() % 5000 + 1);//x, y);
+    creationTimer.restart();
 }
 
 void Factory::Update()
@@ -28,6 +25,12 @@ void Factory::Update()
     location->addVector(*velocity);
     // Reset accelertion to 0 each cycle
     acceleration->mulScalar(0);
+
+    if (creationTimer.getElapsedTime().asSeconds() > CreationTime)
+    {
+        eManager->addPredator(location->x, location->y);
+        creationTimer.restart();
+    }
 }
 
 void Factory::Draw(sf::RenderWindow &w, sf::Vector2f &wb)

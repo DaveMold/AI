@@ -6,7 +6,7 @@
 class Player {
 
 	//vairbles
-	float speed = 1.0f;
+	float speed = 2.0f;
 	float spritePosOffSet = 16;//sprite size / 2; sprite size == 32
 	sf::Texture texture;
 	sf::Vector2f direction;

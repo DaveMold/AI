@@ -13,13 +13,20 @@ EnemyManager::~EnemyManager()
 
 void EnemyManager::Draw(sf::RenderWindow &w, sf::Vector2f &wb)
 {
-    for (int i = 0; i < enemies.size(); i++)
+    int size = enemies.size();
+    for (int i = 0; i < size; i++)
     {
         enemies[i]->Draw(w, wb);
     }
-    for (int i = 0; i < factories.size(); i++)
+    size = factories.size();
+    for (int i = 0; i < size; i++)
     {
         factories[i]->Draw(w, wb);
+    }
+    size = preds.size();
+    for (int i = 0; i < size; i++)
+    {
+        preds[i]->Draw(w, wb);
     }
 }
 
@@ -48,14 +55,16 @@ void EnemyManager::flocking()
 
 void EnemyManager::swarmECollision()
 {
-    for (auto itr = enemies.begin(); itr != enemies.end(); itr++)
+    int size = enemies.size();
+    for (int i = 0; i < size; i++)
     {
-        if (ProjectileManager::instance()->Collision(*itr))
+        if (ProjectileManager::instance()->Collision(enemies[i]))
         {
-            enemies.erase(itr);
-            break;
+            enemies.erase(std::remove(enemies.begin(),enemies.end(),enemies[i]),enemies.end());
+            size--;
         }
     }
+        
 }
 
 void EnemyManager::swarming(Pvector mousepos)
@@ -125,5 +134,29 @@ void EnemyManager::swarmEAI(Pvector target)
         default:
             std::cout << "default EM::swarmAI" << std::endl;
             break;
+    }
+}
+
+void EnemyManager::addPredator(float x, float y)
+{
+    preds.push_back(new Predator(x, y));
+}
+
+void EnemyManager::UpdatePredators(Pvector playerPos)
+{
+    int size = preds.size();
+    for (int i = 0; i < size; i++)
+    {
+        preds[i]->CalculateAlignment(preds);
+        preds[i]->CalculateCohesion(preds);
+        preds[i]->CalculateSeperation(preds);
+
+        auto force = new Pvector(preds[i]->getAlignment().x * .7f + preds[i]->getCohesion().x * .6f + preds[i]->getSeperation().x * .75f,
+            preds[i]->getAlignment().y * .7f + preds[i]->getCohesion().y * .6f + preds[i]->getSeperation().y * .75f);
+
+        preds[i]->Seek(playerPos);
+
+        preds[i]->Update();
+        
     }
 }

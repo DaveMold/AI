@@ -67,6 +67,9 @@ int main()
     int numPacksSwarmers = 10;
     int numSwarmersPerPack = 10;
     int numSwarmerEnemies = numPacksSwarmers * numSwarmersPerPack;
+    int numFactories = 20;
+
+    eManager.addPredator(100, 100);
 
     //create some Enemies
     for (int i = 0; i < numPacksSwarmers; i++)
@@ -78,11 +81,12 @@ int main()
         }
     }
 
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < numFactories; i++)
     {
-        Factory * f = new Factory(5 * i, 5 * i);
+        Factory * f = new Factory(&eManager);
         eManager.addFactory(f);
     }
+
 
     // Start game loop
     while (window.isOpen())
@@ -125,6 +129,7 @@ int main()
         eManager.flocking();
         eManager.swarmECollision();
         eManager.UpdateFactories(player.GetPos());
+        eManager.UpdatePredators(player.GetPos());
 
         //prepare frame
         window.clear();

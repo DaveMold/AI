@@ -1,13 +1,13 @@
 #ifndef FACTORY_H
 #define FACTORY_H
 
+class EnemyManager;
 
 class Factory
 {
 
 public:
-    Factory();
-    Factory(int x , int y);
+    Factory(EnemyManager* eMan);
 
     void Update();
     void CalculateAlignment(std::vector<Factory*> facs);
@@ -32,6 +32,7 @@ public:
     Pvector getSeperation() { return seperation; }
 
 private:
+    EnemyManager* eManager;
     sf::Texture texture;
     sf::Vector2f direction;
     sf::Sprite sprite;
@@ -50,6 +51,8 @@ private:
     int flockingDistance = 300;
     int neighborCount;
 
+    sf::Clock creationTimer;
+    const float CreationTime = 5;
 };
 
 #endif // !FACTORY_H
