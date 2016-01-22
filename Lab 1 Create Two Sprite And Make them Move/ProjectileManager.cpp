@@ -25,7 +25,7 @@ void ProjectileManager::Update(sf::RenderWindow &w) {
 	std::vector<Projectile*>::iterator removeItr;
 	for (auto itr = projectiles.begin(); itr != projectiles.end(); itr++) {
 		//(*itr)->Update();
-		if ((*itr)->ScreenBounds(w) || (*itr)->Update())
+		if ((*itr)->Update())
 		{
 			removed = false;
 			removeItr = itr;

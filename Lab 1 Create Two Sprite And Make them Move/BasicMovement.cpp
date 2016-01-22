@@ -37,7 +37,7 @@ int main()
     srand(time(NULL));
 
     // Create the main window
-    sf::RenderWindow window(sf::VideoMode(800, 600), "Moving Sprites");
+    sf::RenderWindow window(sf::VideoMode(800, 600), "Astroides");
     //used for getting the mouse posistion.
     sf::VideoMode desktop = sf::VideoMode::getDesktopMode();
     const int window_height = desktop.height;
@@ -89,16 +89,15 @@ int main()
     {
         // Process events
         sf::Event Event;
-
+		
         while (window.pollEvent(Event))
-        {
-
+		{
             if (Event.type == Event.KeyPressed && Event.key.code == sf::Keyboard::Escape)
             {
                 window.close();
             }
             switch (Event.type)
-            {
+            {				
                 // Close window : exit
                 case sf::Event::Closed:
                     window.close();
@@ -107,8 +106,8 @@ int main()
                     break;
             }//end switch
         }//end while
-        InputManager::instance()->UpdatePressedKeys(Event);
-
+		InputManager::instance()->UpdatePressedKeys(Event);
+	
         player.Update(worldBounds);
         projectileMgr->Update(window);
 
@@ -119,10 +118,10 @@ int main()
             if (ScreenToClient(window.getSystemHandle(), &mousePos))
             {
                 //std::cout << "mouse pos : (" << mousePos.x << ", " << mousePos.y << ")" << std::endl;
-                eManager.swarming(Pvector(mousePos.x, mousePos.y));
+                eManager.swarmEAI(player.GetPos());
             }
         }
-        eManager.flocking();
+        //eManager.flocking();
         eManager.swarmECollision();
         eManager.UpdateFactories(player.GetPos());
 

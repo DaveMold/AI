@@ -80,11 +80,16 @@ bool InputManager::Released(sf::String key)
     return false;
 }
 
+void InputManager::ClearKeys() {
+	keysPressedLastUpdate = keysPressed;
+	keysPressed.clear();
+}
+
 void InputManager::UpdatePressedKeys(sf::Event e)
 {
-    keysPressedLastUpdate = keysPressed;
-    keysPressed.clear();
-    if (e.type == sf::Event::EventType::KeyPressed)
+	keysPressedLastUpdate = keysPressed;
+	keysPressed.clear();
+    if (e.type == sf::Event::KeyPressed)
     {
         if (e.key.code == sf::Keyboard::Left)
         {
@@ -118,58 +123,5 @@ void InputManager::UpdatePressedKeys(sf::Event e)
         {
             keysPressed.push_back("Space");
         }
-
-        /*if (e.key.code == sf::Keyboard::G)
-        {
-            std::cout << "Gravity On/Off" << std::endl;
-            keysPressed.push_back("G");
-        }*/
     }
-    /*if (e.type == sf::Event::EventType::KeyReleased)
-    {
-        if (e.key.code == sf::Keyboard::Up)
-        {
-            for (auto itr = keysPressed.begin(); itr != keysPressed.end(); itr++) {
-                if ((*itr) == "Up")
-                {
-                    keysPressed.erase(itr);
-                    keysPressedLastUpdate.erase(itr);
-                }
-            }
-        }
-        if (e.key.code == sf::Keyboard::Right)
-        {
-            for (auto itr = keysPressed.begin(); itr != keysPressed.end(); itr++) {
-                if ((*itr) == "Right")
-                {
-                    keysPressed.erase(itr);
-                    keysPressedLastUpdate.erase(itr);
-                }
-            }
-        }
-        if (e.key.code == sf::Keyboard::Left)
-        {
-            for (auto itr = keysPressed.begin(); itr != keysPressed.end(); itr++) {
-                if ((*itr) == "Left")
-                {
-                    keysPressed.erase(itr);
-                    keysPressedLastUpdate.erase(itr);
-                }
-            }
-        }
-    }*/
-    /*else if (sf::Event::TextEntered == sf::Event::EventType::KeyPressed)
-    {
-        std::cout << e.key.code << std::endl;
-        switch (e.key.code)
-        {
-        case sf::Keyboard::G:
-            std::cout << "Gravity On/Off" << std::endl;
-            keysPressed.push_back("G");
-            break;
-        default:
-            break;
-        }
-    }*/
-
 }

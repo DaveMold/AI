@@ -74,7 +74,6 @@ void Swarmer::Draw(sf::RenderWindow &w, sf::Vector2f &wb) {
 	w.draw(sprite);
 }
 
-
 sf::Vector2f Swarmer::GetPos() {
 	return sprite.getPosition();
 }
@@ -82,7 +81,6 @@ sf::Vector2f Swarmer::GetPos() {
 sf::FloatRect Swarmer::GetBounds() {
 	return sprite.getGlobalBounds();
 }
-
 
 void Swarmer::applyForce(Pvector force)
 {

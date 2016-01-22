@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "EnemyManager.h"
 
-EnemyManager::EnemyManager() : swarmingRange(100), swarmAI(FLOCKING)
+EnemyManager::EnemyManager() : swarmingRange(200), swarmAI(FLOCKING)
 {
 
 }
@@ -102,18 +102,18 @@ void EnemyManager::swarmEAI(Pvector target)
         ePos = (*itr)->GetPos();
         //callculate distance between two points
         float dis = sqrt(pow(ePos.x - target.x, 2.0f) + pow(ePos.y - target.y, 2.0f));
-        if (dis < swarmingRange)
-            swarmAI = SWARM;
+        if (dis <= swarmingRange)
+			(*itr)->swarmToPoint(enemies, target);
         else
-            swarmAI = FLOCKING;
+			(*itr)->run(enemies);
     }
 
-    switch (swarmAI)
+   /* switch (swarmAI)
     {
         case SWARM:
             for (auto itr = enemies.begin(); itr != enemies.end(); itr++)
             {
-                (*itr)->swarmToPoint(enemies, target);
+				(*itr)->swarmToPoint(enemies, target);
             }
             break;
         case FLOCKING:
@@ -125,5 +125,5 @@ void EnemyManager::swarmEAI(Pvector target)
         default:
             std::cout << "default EM::swarmAI" << std::endl;
             break;
-    }
+    }*/
 }
