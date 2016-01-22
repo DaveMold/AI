@@ -135,6 +135,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Predator.cpp" />
     <ClCompile Include="Raidar.cpp" />
     <ClCompile Include="Swarmer.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
@@ -174,6 +175,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Predator.h" />
     <ClInclude Include="Raidar.h" />
     <ClInclude Include="Swarmer.h" />
     <ClInclude Include="EnemyManager.h" />
