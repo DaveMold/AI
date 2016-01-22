@@ -126,7 +126,7 @@ int main()
             }
         }
         //eManager.flocking();
-        eManager.swarmECollision();
+        eManager.CheckCollisions();
         eManager.UpdateFactories(player.GetPos());
         eManager.UpdatePredators(player.GetPos());
 

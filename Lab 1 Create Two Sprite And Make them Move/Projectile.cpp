@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "Projectile.h"
 
-Projectile::Projectile(sf::Vector2f dir, sf::Vector2f pos) : direction(dir), range(400), spritePosOffSet(8), speed(7.0f) {
-	sprite.setPosition(pos.x - spritePosOffSet/2, pos.y - spritePosOffSet/2);
+Projectile::Projectile(sf::Vector2f dir, sf::Vector2f pos) : direction(dir), range(400), spritePosOffSet(16), speed(7.0f) {
+	sprite.setPosition(pos.x - spritePosOffSet, pos.y - spritePosOffSet);
 	startPos = pos;
 	texture.loadFromFile("Resorces/Img/Projectile.png");
 	sprite.setTexture(texture);
